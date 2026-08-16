@@ -72,11 +72,15 @@ export default function App() {
           <AnnualSummary records={result.records} startDate={params.startDate} />
         </section>
 
-        {/* Detail Table */}
+        {/* Detail Table with inline editing */}
         <section className="animate-slide-up animate-backwards animation-delay-4">
           <AmortizationTable
             records={result.records}
             startDate={params.startDate}
+            earlyRepayments={params.earlyRepayments}
+            rateAdjustments={params.rateAdjustments}
+            onEarlyRepaymentsChange={(er) => setParams({ ...params, earlyRepayments: er })}
+            onRateAdjustmentsChange={(ra) => setParams({ ...params, rateAdjustments: ra })}
           />
         </section>
       </main>
