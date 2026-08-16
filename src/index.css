@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Bangers&family=Creepster&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -29,7 +29,6 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-/* Tabular numerics */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
@@ -100,13 +99,8 @@ input[type='number'] {
   transition: background-color 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
 }
 
-.apple-btn:hover {
-  filter: brightness(0.96);
-}
-
-.apple-btn:active {
-  filter: brightness(0.92);
-}
+.apple-btn:hover { filter: brightness(0.96); }
+.apple-btn:active { filter: brightness(0.92); }
 
 .apple-btn-secondary {
   background: #f2f2f7;
@@ -116,19 +110,6 @@ input[type='number'] {
 .apple-btn-secondary:hover {
   background: #e5e5ea;
   filter: none;
-}
-
-.apple-btn-ghost {
-  background: transparent;
-  color: #007AFF;
-  box-shadow: none;
-  height: auto;
-  padding: 0;
-}
-
-.apple-btn-ghost:hover {
-  filter: none;
-  text-decoration: underline;
 }
 
 .apple-segmented {
@@ -146,17 +127,21 @@ input[type='number'] {
   padding: 0 0.75rem;
   border: none;
   background: transparent;
-  color: #1d1d1f;
+  color: #6e6e73;
   font-size: 12px;
   font-weight: 500;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  transition: all 0.18s ease;
 }
 
 .apple-segmented button.active {
   background: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
+  color: #007AFF;
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.08),
+    0 1px 3px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 0.5px rgba(0, 0, 0, 0.08);
   font-weight: 600;
 }
 
@@ -172,46 +157,18 @@ input[type='number'] {
   color: #1d1d1f;
 }
 
-.apple-tag-primary {
-  background: rgba(0, 122, 255, 0.1);
-  color: #007AFF;
-}
+.apple-tag-primary { background: rgba(0, 122, 255, 0.1); color: #007AFF; }
+.apple-tag-success { background: rgba(52, 199, 89, 0.1); color: #34C759; }
+.apple-tag-warning { background: rgba(255, 149, 0, 0.1); color: #FF9500; }
+.apple-tag-destructive { background: rgba(255, 59, 48, 0.1); color: #FF3B30; }
 
-.apple-tag-success {
-  background: rgba(52, 199, 89, 0.1);
-  color: #34C759;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
 
-.apple-tag-warning {
-  background: rgba(255, 149, 0, 0.1);
-  color: #FF9500;
-}
-
-.apple-tag-destructive {
-  background: rgba(255, 59, 48, 0.1);
-  color: #FF3B30;
-}
-
-/* Scrollbar styling - Apple */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-/* Recharts tooltip - Apple style */
+/* Recharts tooltip */
 .recharts-default-tooltip {
   background: rgba(255, 255, 255, 0.95) !important;
   border: 1px solid #e5e5ea !important;
@@ -228,36 +185,14 @@ input[type='number'] {
   margin-bottom: 4px !important;
 }
 
-.recharts-tooltip-item {
-  color: #6e6e73 !important;
-  font-size: 12px !important;
-}
+.recharts-tooltip-item { color: #6e6e73 !important; font-size: 12px !important; }
+.recharts-cartesian-axis-tick text { fill: #8e8e93 !important; font-size: 11px; }
+.recharts-legend-item-text { color: #6e6e73 !important; font-size: 12px; }
 
-.recharts-cartesian-axis-tick text {
-  fill: #8e8e93 !important;
-  font-size: 11px;
-}
+input[type='month'] { color-scheme: light; }
+input[type='month']::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.6; }
+input[type='month']::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 
-.recharts-legend-item-text {
-  color: #6e6e73 !important;
-  font-size: 12px;
-}
-
-/* Month input styling */
-input[type='month'] {
-  color-scheme: light;
-}
-
-input[type='month']::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-input[type='month']::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-}
-
-/* Select styling */
 select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -266,17 +201,10 @@ select {
   padding-right: 2rem;
 }
 
-select option {
-  background: #ffffff;
-  color: #1d1d1f;
-}
+select option { background: #ffffff; color: #1d1d1f; }
 
-/* Table row hover */
-.table-row-hover tr:hover td {
-  background: #f7f7fa;
-}
+.table-row-hover tr:hover td { background: #f7f7fa; }
 
-/* Animation delays utility */
 .animation-delay-1 { animation-delay: 50ms; }
 .animation-delay-2 { animation-delay: 100ms; }
 .animation-delay-3 { animation-delay: 150ms; }
@@ -284,34 +212,93 @@ select option {
 .animation-delay-5 { animation-delay: 250ms; }
 .animation-delay-6 { animation-delay: 300ms; }
 
-/* Backwards fill for staggered animations */
-.animate-backwards {
-  animation-fill-mode: backwards;
+.animate-backwards { animation-fill-mode: backwards; }
+
+/* Theme switcher base */
+.theme-switcher {
+  position: relative;
+}
+
+.theme-switcher-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.12), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+  padding: 4px;
+  z-index: 100;
+  animation: scaleIn 0.18s ease-out;
+  transform-origin: top right;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.theme-switcher-menu button {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.theme-switcher-menu button:hover { background: #f2f2f7; }
+.theme-switcher-menu button.active { background: rgba(0, 122, 255, 0.1); color: #007AFF; }
+
+.theme-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.theme-swatch-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c1) 50%, var(--c2) 50%, var(--c2) 100%);
 }
 
 /* ============================================
-   WARHAMMER THEME (战锤风格 - Grimdark Gothic)
+   WARHAMMER THEME (战锤40k - 帝国哥特 & 机械神教)
    ============================================ */
 
 .theme-warhammer {
-  --wh-bg: #14110f;
-  --wh-bg-alt: #1c1815;
-  --wh-bg-card: #1f1a17;
-  --wh-bg-card-hover: #28221e;
-  --wh-border: #3d332a;
-  --wh-border-light: #4a3e33;
-  --wh-text: #d9cfc2;
-  --wh-text-muted: #8a7d6d;
-  --wh-text-dim: #5e5449;
+  --wh-bg: #0a0806;
+  --wh-bg-alt: #181410;
+  --wh-bg-card: #1c1713;
+  --wh-bg-card-hover: #2a2218;
+  --wh-border: #3d2e1f;
+  --wh-border-light: #5a4530;
+  --wh-text: #c9b89a;
+  --wh-text-muted: #8a7558;
+  --wh-text-dim: #5e4d38;
   --wh-gold: #d4a853;
-  --wh-gold-bright: #e8c77a;
+  --wh-gold-bright: #f0d080;
   --wh-gold-dark: #8b6914;
   --wh-blood: #8b1a1a;
   --wh-blood-bright: #c42525;
   --wh-blood-dark: #5c0f0f;
-  --wh-green: #4a7c3a;
-  --wh-blue: #3a6b7c;
-  --wh-purple: #6b3a7c;
+  --wh-steel: #4a4540;
+  --wh-bone: #e8dcc4;
+  --wh-omnisiah-red: #a02020;
+  --wh-omnisiah-crimson: #c41e3a;
+  --wh-mechadendrite: #2a4030;
 
   background: var(--wh-bg);
   color: var(--wh-text);
@@ -320,37 +307,99 @@ select option {
 .theme-warhammer body {
   background: var(--wh-bg);
   color: var(--wh-text);
-  font-family: 'Cinzel', 'DM Sans', serif;
+  font-family: 'Cinzel', 'Noto Serif SC', serif;
   font-feature-settings: normal;
   background-image:
-    radial-gradient(ellipse at top, rgba(139, 26, 26, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom, rgba(212, 168, 83, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 10%, rgba(139, 26, 26, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 90%, rgba(212, 168, 83, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(160, 32, 32, 0.04) 0%, transparent 60%);
   background-attachment: fixed;
+  position: relative;
+}
+
+.theme-warhammer body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5 L35 15 L45 15 L37 22 L40 32 L30 26 L20 32 L23 22 L15 15 L25 15 Z' fill='none' stroke='%23d4a853' stroke-width='0.5' opacity='0.04'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .theme-warhammer header {
-  background: rgba(28, 24, 21, 0.85) !important;
-  border-bottom-color: var(--wh-border) !important;
+  background: linear-gradient(180deg, rgba(15, 12, 9, 0.95) 0%, rgba(20, 16, 13, 0.9) 100%) !important;
+  border-bottom: 2px solid var(--wh-gold-dark) !important;
   backdrop-filter: blur(12px) !important;
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.8),
+    inset 0 -1px 0 rgba(212, 168, 83, 0.2),
+    inset 0 1px 0 rgba(212, 168, 83, 0.05) !important;
+  position: relative;
+}
+
+.theme-warhammer header::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--wh-gold) 20%, var(--wh-gold-bright) 50%, var(--wh-gold) 80%, transparent 100%);
+  opacity: 0.5;
 }
 
 .theme-warhammer h1,
 .theme-warhammer h2,
 .theme-warhammer h3,
 .theme-warhammer h4 {
-  font-family: 'Cinzel', 'DM Sans', serif;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-family: 'Cinzel', 'Noto Serif SC', serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
 }
 
-/* Warhammer Cards */
+.theme-warhammer h1 {
+  text-shadow:
+    0 0 20px rgba(212, 168, 83, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Gothic decorative element - Aquila style */
+.wh-gothic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1rem 0;
+}
+
+.wh-gothic-divider::before,
+.wh-gothic-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wh-gold-dark), var(--wh-gold), var(--wh-gold-dark), transparent);
+}
+
+/* Card with gothic corner decorations */
 .theme-warhammer .apple-card {
-  background: var(--wh-bg-card);
+  background: linear-gradient(180deg, var(--wh-bg-card) 0%, #16110d 100%);
   border: 1px solid var(--wh-border);
-  border-radius: 4px;
+  border-radius: 0;
   box-shadow:
     inset 0 1px 0 rgba(212, 168, 83, 0.08),
-    0 4px 12px rgba(0, 0, 0, 0.4);
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 6px 24px rgba(0, 0, 0, 0.6);
   position: relative;
 }
 
@@ -358,337 +407,1252 @@ select option {
   content: '';
   position: absolute;
   top: 0;
-  left: 12px;
-  right: 12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--wh-gold-dark) 10%,
+    var(--wh-gold) 30%,
+    var(--wh-gold-bright) 50%,
+    var(--wh-gold) 70%,
+    var(--wh-gold-dark) 90%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+.theme-warhammer .apple-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--wh-gold-dark), transparent);
+  background: linear-gradient(90deg, transparent, var(--wh-border), transparent);
+}
+
+/* Gothic corner ornaments */
+.theme-warhammer .apple-card > *:first-child::before,
+.theme-warhammer .apple-card > *:first-child::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--wh-gold-dark);
+  opacity: 0.5;
+}
+
+.theme-warhammer .apple-card > *:first-child::before {
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.theme-warhammer .apple-card > *:first-child::after {
+  right: 6px;
+  border-left: none;
+  border-bottom: none;
 }
 
 .theme-warhammer .apple-card:hover {
   border-color: var(--wh-gold-dark);
   box-shadow:
-    inset 0 1px 0 rgba(212, 168, 83, 0.12),
-    0 6px 20px rgba(0, 0, 0, 0.5);
+    inset 0 1px 0 rgba(212, 168, 83, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(212, 168, 83, 0.05);
 }
 
-/* Warhammer Fields */
 .theme-warhammer .apple-field {
   background: var(--wh-bg-alt);
   border: 1px solid var(--wh-border);
-  border-radius: 4px;
-  color: var(--wh-text);
+  border-radius: 0;
+  color: var(--wh-bone);
   height: 42px;
+  position: relative;
+}
+
+.theme-warhammer .apple-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.2), transparent);
 }
 
 .theme-warhammer .apple-field:focus-within {
   border-color: var(--wh-gold);
-  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+  box-shadow:
+    0 0 0 3px rgba(212, 168, 83, 0.15),
+    inset 0 0 12px rgba(212, 168, 83, 0.05);
 }
 
 .theme-warhammer .apple-input {
-  color: var(--wh-text);
+  color: var(--wh-bone);
   font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 8px rgba(232, 220, 196, 0.1);
 }
 
-.theme-warhammer .apple-input::placeholder {
-  color: var(--wh-text-dim);
-}
+.theme-warhammer .apple-input::placeholder { color: var(--wh-text-dim); }
 
-/* Warhammer Buttons */
+/* Buttons - Inquisition style */
 .theme-warhammer .apple-btn {
-  background: linear-gradient(180deg, var(--wh-gold) 0%, var(--wh-gold-dark) 100%);
+  background: linear-gradient(180deg, var(--wh-gold) 0%, var(--wh-gold-dark) 50%, #6b5010 100%);
   color: #1a1410;
-  border-radius: 4px;
+  border-radius: 0;
   font-family: 'Cinzel', serif;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 10px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--wh-gold-dark);
+  position: relative;
+}
+
+.theme-warhammer .apple-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .theme-warhammer .apple-btn:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(212, 168, 83, 0.2);
+}
+
+.theme-warhammer .apple-btn:active {
+  filter: brightness(0.95);
+  transform: translateY(1px);
 }
 
 .theme-warhammer .apple-btn-secondary {
-  background: var(--wh-bg-card);
+  background: linear-gradient(180deg, var(--wh-bg-card) 0%, var(--wh-bg-alt) 100%);
   color: var(--wh-gold);
   border: 1px solid var(--wh-border);
 }
 
 .theme-warhammer .apple-btn-secondary:hover {
-  background: var(--wh-bg-card-hover);
+  background: linear-gradient(180deg, var(--wh-bg-card-hover) 0%, var(--wh-bg-card) 100%);
   border-color: var(--wh-gold-dark);
+  color: var(--wh-gold-bright);
 }
 
-/* Warhammer Segmented Control */
+/* Segmented control - Mechanicus cog style */
 .theme-warhammer .apple-segmented {
   background: var(--wh-bg-alt);
   border: 1px solid var(--wh-border);
-  border-radius: 4px;
-  padding: 3px;
+  border-radius: 0;
+  padding: 2px;
+  position: relative;
+}
+
+.theme-warhammer .apple-segmented::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wh-gold-dark), transparent);
 }
 
 .theme-warhammer .apple-segmented button {
   color: var(--wh-text-muted);
   font-family: 'Cinzel', serif;
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  border-radius: 2px;
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: all 0.2s ease;
 }
 
 .theme-warhammer .apple-segmented button.active {
-  background: linear-gradient(180deg, var(--wh-gold) 0%, var(--wh-gold-dark) 100%);
+  background: linear-gradient(180deg, var(--wh-gold) 0%, var(--wh-gold-dark) 60%, #6b5010 100%);
   color: #1a1410;
-  font-weight: 700;
+  font-weight: 800;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 1px 3px rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 1px 4px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--wh-gold-dark);
+  position: relative;
 }
 
-/* Warhammer Tags */
+.theme-warhammer .apple-segmented button.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3px;
+  right: 3px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Tags - Scroll / Seal style */
 .theme-warhammer .apple-tag {
   background: var(--wh-bg-alt);
   color: var(--wh-text);
   border: 1px solid var(--wh-border);
-  border-radius: 3px;
+  border-radius: 0;
   font-family: 'Cinzel', serif;
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  position: relative;
+}
+
+.theme-warhammer .apple-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  right: 2px;
+  height: 1px;
+  background: rgba(212, 168, 83, 0.2);
 }
 
 .theme-warhammer .apple-tag-primary {
-  background: rgba(212, 168, 83, 0.15);
-  color: var(--wh-gold);
+  background: linear-gradient(180deg, rgba(212, 168, 83, 0.15) 0%, rgba(212, 168, 83, 0.08) 100%);
+  color: var(--wh-gold-bright);
   border-color: var(--wh-gold-dark);
 }
 
 .theme-warhammer .apple-tag-success {
   background: rgba(74, 124, 58, 0.2);
   color: #6ab052;
-  border-color: var(--wh-green);
+  border-color: #2e5a20;
 }
 
 .theme-warhammer .apple-tag-warning {
-  background: rgba(139, 26, 26, 0.2);
+  background: linear-gradient(180deg, rgba(139, 26, 26, 0.3) 0%, rgba(139, 26, 26, 0.15) 100%);
   color: var(--wh-blood-bright);
   border-color: var(--wh-blood);
 }
 
 .theme-warhammer .apple-tag-destructive {
-  background: rgba(139, 26, 26, 0.3);
-  color: var(--wh-blood-bright);
-  border-color: var(--wh-blood);
+  background: rgba(139, 26, 26, 0.4);
+  color: #ff5050;
+  border-color: var(--wh-blood-bright);
 }
 
-/* Warhammer Tables */
+/* Warhammer table - Administratum records */
 .theme-warhammer .table-row-hover tr:hover td {
-  background: rgba(212, 168, 83, 0.05);
+  background: rgba(212, 168, 83, 0.08) !important;
 }
 
-.theme-warhammer table {
-  color: var(--wh-text);
-}
+.theme-warhammer table { color: var(--wh-text); }
 
 .theme-warhammer thead tr {
-  background: var(--wh-bg-alt) !important;
-  border-bottom-color: var(--wh-border) !important;
+  background: linear-gradient(180deg, var(--wh-bg-alt) 0%, #120e0a 100%) !important;
+  border-bottom: 2px solid var(--wh-gold-dark) !important;
+  position: relative;
+}
+
+.theme-warhammer thead tr::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wh-gold), transparent);
+  opacity: 0.5;
 }
 
 .theme-warhammer th {
   color: var(--wh-gold) !important;
   font-family: 'Cinzel', serif;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 10px !important;
+  font-size: 8px !important;
+  text-shadow: 0 0 10px rgba(212, 168, 83, 0.2);
 }
 
 .theme-warhammer tbody tr {
   border-bottom-color: var(--wh-border) !important;
+  transition: all 0.15s ease;
 }
 
 .theme-warhammer tbody tr:hover {
-  background: rgba(212, 168, 83, 0.03);
+  background: rgba(212, 168, 83, 0.04);
 }
 
-.theme-warhammer td {
-  color: var(--wh-text);
-}
+.theme-warhammer td { color: var(--wh-text); }
 
-/* Warhammer brand / system colors override */
+/* Warhammer color overrides */
 .theme-warhammer .text-brand-500,
 .theme-warhammer .text-brand-400 {
   color: var(--wh-gold) !important;
+  text-shadow: 0 0 10px rgba(212, 168, 83, 0.2);
 }
+.theme-warhammer .bg-brand-500 { background-color: var(--wh-gold) !important; }
+.theme-warhammer .bg-brand-500\/10 { background-color: rgba(212, 168, 83, 0.12) !important; }
+.theme-warhammer .from-brand-400 { --tw-gradient-from: var(--wh-gold) !important; }
+.theme-warhammer .to-brand-600 { --tw-gradient-to: var(--wh-gold-dark) !important; }
+.theme-warhammer .border-brand-500 { border-color: var(--wh-gold) !important; }
+.theme-warhammer .ring-brand-500\/20 { --tw-ring-color: rgba(212, 168, 83, 0.25) !important; }
 
-.theme-warhammer .bg-brand-500 {
-  background-color: var(--wh-gold) !important;
-}
-
-.theme-warhammer .bg-brand-500\/10 {
-  background-color: rgba(212, 168, 83, 0.1) !important;
-}
-
-.theme-warhammer .from-brand-400 {
-  --tw-gradient-from: var(--wh-gold) !important;
-}
-
-.theme-warhammer .to-brand-600 {
-  --tw-gradient-to: var(--wh-gold-dark) !important;
-}
-
-.theme-warhammer .border-brand-500 {
-  border-color: var(--wh-gold) !important;
-}
-
-.theme-warhammer .text-brand-500\/20 {
-  color: rgba(212, 168, 83, 0.2) !important;
-}
-
-.theme-warhammer .ring-brand-500\/20 {
-  --tw-ring-color: rgba(212, 168, 83, 0.2) !important;
-}
-
-/* Warhammer footer */
+/* Warhammer footer - Imperium base */
 .theme-warhammer footer {
-  border-top-color: var(--wh-border) !important;
-  background: rgba(28, 24, 21, 0.5) !important;
+  border-top: 2px solid var(--wh-gold-dark) !important;
+  background: linear-gradient(180deg, rgba(15, 12, 9, 0.6) 0%, rgba(10, 8, 6, 0.8) 100%) !important;
+  position: relative;
+}
+
+.theme-warhammer footer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--wh-gold) 20%, var(--wh-gold-bright) 50%, var(--wh-gold) 80%, transparent 100%);
+  opacity: 0.4;
 }
 
 /* Warhammer scrollbar */
 .theme-warhammer ::-webkit-scrollbar-thumb {
-  background: var(--wh-border-light);
-  border-radius: 2px;
+  background: linear-gradient(180deg, var(--wh-border-light) 0%, var(--wh-border) 100%);
+  border-radius: 0;
+  border: 1px solid var(--wh-gold-dark);
 }
-
 .theme-warhammer ::-webkit-scrollbar-thumb:hover {
-  background: var(--wh-gold-dark);
+  background: linear-gradient(180deg, var(--wh-gold-dark) 0%, var(--wh-border-light) 100%);
 }
 
-/* Warhammer chart tooltip */
+/* Warhammer chart */
 .theme-warhammer .recharts-default-tooltip {
-  background: rgba(31, 26, 23, 0.97) !important;
+  background: linear-gradient(180deg, rgba(26, 21, 18, 0.98) 0%, rgba(15, 12, 9, 0.98) 100%) !important;
   border: 1px solid var(--wh-gold-dark) !important;
-  border-radius: 4px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(8px);
+  border-radius: 0 !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(212, 168, 83, 0.1) !important;
 }
 
 .theme-warhammer .recharts-tooltip-label {
   color: var(--wh-gold) !important;
   font-family: 'Cinzel', serif !important;
-  font-weight: 600 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 10px !important;
+  text-shadow: 0 0 8px rgba(212, 168, 83, 0.3);
 }
 
-.theme-warhammer .recharts-tooltip-item {
-  color: var(--wh-text-muted) !important;
-}
+.theme-warhammer .recharts-tooltip-item { color: var(--wh-text-muted) !important; }
+.theme-warhammer .recharts-cartesian-axis-tick text { fill: var(--wh-text-dim) !important; }
+.theme-warhammer .recharts-legend-item-text { color: var(--wh-text-muted) !important; }
+.theme-warhammer .recharts-cartesian-grid line { stroke: var(--wh-border) !important; }
 
-.theme-warhammer .recharts-cartesian-axis-tick text {
-  fill: var(--wh-text-dim) !important;
-}
+.theme-warhammer input[type='month'] { color-scheme: dark; }
 
-.theme-warhammer .recharts-legend-item-text {
-  color: var(--wh-text-muted) !important;
-}
-
-.theme-warhammer .recharts-cartesian-grid line {
-  stroke: var(--wh-border) !important;
-}
-
-/* Warhammer month input */
-.theme-warhammer input[type='month'] {
-  color-scheme: dark;
-}
-
-.theme-warhammer input[type='month']::-webkit-calendar-picker-indicator {
-  filter: sepia(1) saturate(3) hue-rotate(10deg) brightness(0.9);
-  opacity: 0.8;
-}
-
-/* Warhammer select */
 .theme-warhammer select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d4a853' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
-.theme-warhammer select option {
-  background: var(--wh-bg-card);
-  color: var(--wh-text);
-}
+.theme-warhammer select option { background: var(--wh-bg-card); color: var(--wh-text); }
 
-/* Warhammer quick chip buttons */
 .theme-warhammer .bg-background-200 {
-  background: var(--wh-bg-alt) !important;
+  background: linear-gradient(180deg, var(--wh-bg-alt) 0%, #120e0a 100%) !important;
   border: 1px solid var(--wh-border);
   color: var(--wh-text-muted) !important;
+  position: relative;
+}
+
+.theme-warhammer .bg-background-200::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.2), transparent);
 }
 
 .theme-warhammer .bg-background-200:hover {
-  background: var(--wh-bg-card-hover) !important;
+  background: linear-gradient(180deg, var(--wh-bg-card-hover) 0%, var(--wh-bg-card) 100%) !important;
   border-color: var(--wh-gold-dark);
 }
 
-/* Warhammer sticky header bg */
-.theme-warhammer .bg-background-100\/95 {
-  background: rgba(28, 24, 21, 0.95) !important;
+.theme-warhammer .bg-background-100\/95 { background: rgba(22, 17, 14, 0.95) !important; }
+.theme-warhammer .bg-background-100\/50 { background: rgba(22, 17, 14, 0.5) !important; }
+.theme-warhammer .bg-background-200 { background: var(--wh-bg-alt) !important; }
+.theme-warhammer .bg-background-300 { background: var(--wh-border) !important; }
+.theme-warhammer .border-background-200 { border-color: var(--wh-border) !important; }
+.theme-warhammer .border-background-300 { border-color: var(--wh-border) !important; }
+
+.theme-warhammer .text-text-800,
+.theme-warhammer .text-text-700 { color: var(--wh-bone) !important; }
+.theme-warhammer .text-text-600,
+.theme-warhammer .text-text-500 { color: var(--wh-text-muted) !important; }
+.theme-warhammer .text-text-400,
+.theme-warhammer .text-text-300 { color: var(--wh-text-dim) !important; }
+
+.theme-warhammer .hover\:bg-background-200:hover { background: var(--wh-bg-alt) !important; }
+
+/* Warhammer theme switcher - Inquisition roster */
+.theme-warhammer .theme-switcher-menu {
+  background: linear-gradient(180deg, var(--wh-bg-card) 0%, #14100c 100%);
+  border: 1px solid var(--wh-gold-dark);
+  border-radius: 0;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(212, 168, 83, 0.08);
+  position: relative;
 }
 
-.theme-warhammer .bg-background-100\/50 {
-  background: rgba(28, 24, 21, 0.5) !important;
+.theme-warhammer .theme-switcher-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--wh-gold-dark), var(--wh-gold), var(--wh-gold-dark), transparent);
 }
 
-.theme-warhammer .bg-background-200 {
+.theme-warhammer .theme-switcher-menu button {
+  color: var(--wh-text);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.theme-warhammer .theme-switcher-menu button:hover {
+  background: rgba(212, 168, 83, 0.1);
+  color: var(--wh-gold-bright);
+}
+
+.theme-warhammer .theme-switcher-menu button.active {
+  background: linear-gradient(90deg, rgba(212, 168, 83, 0.18) 0%, rgba(212, 168, 83, 0.08) 100%);
+  color: var(--wh-gold-bright);
+  text-shadow: 0 0 8px rgba(212, 168, 83, 0.3);
+}
+
+/* Imperium mottos and decorations */
+.wh-motto {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wh-gold-dark);
+  font-style: italic;
+  text-align: center;
+}
+
+.wh-motto-omnissiah {
+  color: var(--wh-omnisiah-crimson);
+  text-shadow: 0 0 8px rgba(196, 30, 58, 0.3);
+  font-weight: 600;
+}
+
+/* Cogwheel pattern for Mechanicus */
+.wh-cog-border {
+  position: relative;
+}
+
+.wh-cog-border::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--wh-gold-dark);
+  border-radius: 50%;
+  background: var(--wh-bg-alt);
+}
+
+/* Skull / skull icon decoration */
+.wh-skull-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wh-gold-dark);
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.wh-skull-divider::before,
+.wh-skull-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--wh-border);
+}
+
+/* Quick button selected state - Warhammer */
+.theme-warhammer .bg-brand-500.text-white {
+  background: linear-gradient(180deg, var(--wh-gold) 0%, var(--wh-gold-dark) 100%) !important;
+  color: #1a1410 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid var(--wh-gold-dark) !important;
+}
+
+/* Header icon glow */
+.theme-warhammer .from-brand-400 {
+  --tw-gradient-from: var(--wh-gold-bright) !important;
+  filter: drop-shadow(0 0 6px rgba(212, 168, 83, 0.4));
+}
+
+/* Inline edit inputs in table */
+.theme-warhammer .bg-white {
   background: var(--wh-bg-alt) !important;
+  color: var(--wh-bone) !important;
+  border-color: var(--wh-gold-dark) !important;
 }
 
-.theme-warhammer .bg-background-300 {
-  background: var(--wh-border) !important;
+/* Highlight row */
+.theme-warhammer .bg-\[\#FF9500\]\/10 {
+  background: rgba(212, 168, 83, 0.15) !important;
 }
 
-.theme-warhammer .border-background-200 {
+.theme-warhammer .bg-\[\#34C759\]\/5 {
+  background: rgba(74, 124, 58, 0.1) !important;
+}
+
+.theme-warhammer .bg-brand-500\/5 {
+  background: rgba(212, 168, 83, 0.08) !important;
+}
+
+/* Search input in table */
+.theme-warhammer .bg-background-200.border {
+  background: var(--wh-bg-alt) !important;
   border-color: var(--wh-border) !important;
 }
 
-.theme-warhammer .border-background-300 {
-  border-color: var(--wh-border) !important;
+/* Sticky column background inherit fix */
+.theme-warhammer .bg-inherit {
+  background: inherit !important;
 }
 
-.theme-warhammer .text-text-800 {
-  color: var(--wh-text) !important;
+/* ============================================
+   WULIN THEME (武林外传 - 同福客栈)
+   ============================================ */
+
+.theme-wulin {
+  --wl-bg: #f5ecd9;
+  --wl-bg-alt: #ede0c3;
+  --wl-bg-card: #faf3e0;
+  --wl-bg-card-hover: #f2e8c9;
+  --wl-border: #c9a96a;
+  --wl-border-light: #d8bd85;
+  --wl-text: #4a3728;
+  --wl-text-muted: #7a5e42;
+  --wl-text-dim: #a08565;
+  --wl-red: #a0322c;
+  --wl-red-light: #c94b44;
+  --wl-green: #5a7a3e;
+  --wl-brown: #8b6914;
+  --wl-gold: #c9a96a;
+
+  background: var(--wl-bg);
+  color: var(--wl-text);
 }
 
-.theme-warhammer .text-text-700 {
-  color: var(--wh-text) !important;
+.theme-wulin body {
+  background: var(--wl-bg);
+  color: var(--wl-text);
+  font-family: 'Noto Serif SC', 'KaiTi', 'STKaiti', serif;
+  background-image:
+    radial-gradient(ellipse at top, rgba(201, 169, 106, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(160, 133, 101, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
 }
 
-.theme-warhammer .text-text-600 {
-  color: var(--wh-text-muted) !important;
+.theme-wulin header {
+  background: rgba(250, 243, 224, 0.9) !important;
+  border-bottom: 2px solid var(--wl-border) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
-.theme-warhammer .text-text-500 {
-  color: var(--wh-text-muted) !important;
+.theme-wulin h1, .theme-wulin h2, .theme-wulin h3, .theme-wulin h4 {
+  font-family: 'Noto Serif SC', 'KaiTi', serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
-.theme-warhammer .text-text-400 {
-  color: var(--wh-text-dim) !important;
+.theme-wulin .apple-card {
+  background: var(--wl-bg-card);
+  border: 1px solid var(--wl-border-light);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(74, 55, 40, 0.08);
+  position: relative;
 }
 
-.theme-warhammer .text-text-300 {
-  color: var(--wh-text-dim) !important;
+.theme-wulin .apple-card::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid rgba(201, 169, 106, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
 }
 
-.theme-warhammer .hover\:bg-background-200:hover {
-  background: var(--wh-bg-alt) !important;
+.theme-wulin .apple-field {
+  background: #fffdf5;
+  border: 1px solid var(--wl-border-light);
+  border-radius: 4px;
+  color: var(--wl-text);
 }
 
-/* Theme toggle button */
+.theme-wulin .apple-field:focus-within {
+  border-color: var(--wl-red);
+  box-shadow: 0 0 0 3px rgba(160, 50, 44, 0.12);
+}
+
+.theme-wulin .apple-input { color: var(--wl-text); font-weight: 500; }
+.theme-wulin .apple-input::placeholder { color: var(--wl-text-dim); }
+
+.theme-wulin .apple-btn {
+  background: var(--wl-red);
+  color: #faf3e0;
+  border-radius: 4px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+.theme-wulin .apple-btn:hover { filter: brightness(1.05); }
+
+.theme-wulin .apple-btn-secondary {
+  background: var(--wl-bg-alt);
+  color: var(--wl-text);
+  border: 1px solid var(--wl-border-light);
+}
+
+.theme-wulin .apple-segmented {
+  background: var(--wl-bg-alt);
+  border: 1px solid var(--wl-border-light);
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.theme-wulin .apple-segmented button {
+  color: var(--wl-text-muted);
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.theme-wulin .apple-segmented button.active {
+  background: var(--wl-red);
+  color: #faf3e0;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(160, 50, 44, 0.2);
+}
+
+.theme-wulin .apple-tag {
+  background: var(--wl-bg-alt);
+  color: var(--wl-text);
+  border: 1px solid var(--wl-border-light);
+  border-radius: 2px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.theme-wulin .apple-tag-primary { background: rgba(160, 50, 44, 0.1); color: var(--wl-red); border-color: var(--wl-red); }
+.theme-wulin .apple-tag-success { background: rgba(90, 122, 62, 0.15); color: var(--wl-green); border-color: var(--wl-green); }
+.theme-wulin .apple-tag-warning { background: rgba(201, 169, 106, 0.3); color: var(--wl-brown); }
+
+.theme-wulin .text-brand-500, .theme-wulin .text-brand-400 { color: var(--wl-red) !important; }
+.theme-wulin .bg-brand-500 { background-color: var(--wl-red) !important; }
+.theme-wulin .bg-brand-500\/10 { background-color: rgba(160, 50, 44, 0.1) !important; }
+.theme-wulin .from-brand-400 { --tw-gradient-from: var(--wl-red-light) !important; }
+.theme-wulin .to-brand-600 { --tw-gradient-to: var(--wl-red) !important; }
+.theme-wulin .border-brand-500 { border-color: var(--wl-red) !important; }
+.theme-wulin .ring-brand-500\/20 { --tw-ring-color: rgba(160, 50, 44, 0.15) !important; }
+
+.theme-wulin footer {
+  border-top: 2px solid var(--wl-border) !important;
+  background: rgba(237, 224, 195, 0.5) !important;
+}
+
+.theme-wulin .bg-background-100\/95 { background: rgba(250, 243, 224, 0.95) !important; }
+.theme-wulin .bg-background-100\/50 { background: rgba(250, 243, 224, 0.5) !important; }
+.theme-wulin .bg-background-200 { background: var(--wl-bg-alt) !important; }
+.theme-wulin .bg-background-300 { background: var(--wl-border-light) !important; }
+.theme-wulin .border-background-200 { border-color: var(--wl-border-light) !important; }
+.theme-wulin .border-background-300 { border-color: var(--wl-border) !important; }
+.theme-wulin .text-text-800, .theme-wulin .text-text-700 { color: var(--wl-text) !important; }
+.theme-wulin .text-text-600, .theme-wulin .text-text-500 { color: var(--wl-text-muted) !important; }
+.theme-wulin .text-text-400, .theme-wulin .text-text-300 { color: var(--wl-text-dim) !important; }
+
+.theme-wulin thead tr { border-bottom-color: var(--wl-border) !important; }
+.theme-wulin th { color: var(--wl-red) !important; font-family: 'Noto Serif SC', serif; font-weight: 700; }
+
+/* ============================================
+   RENMIN THEME (人民的名义 - 冷峻纪实)
+   ============================================ */
+
+.theme-renmin {
+  --rm-bg: #e8eaed;
+  --rm-bg-alt: #f1f3f4;
+  --rm-bg-card: #ffffff;
+  --rm-bg-card-hover: #f8f9fa;
+  --rm-border: #dadce0;
+  --rm-border-light: #e8eaed;
+  --rm-text: #202124;
+  --rm-text-muted: #5f6368;
+  --rm-text-dim: #80868b;
+  --rm-red: #c5221f;
+  --rm-red-dark: #a50e0e;
+  --rm-blue: #1a73e8;
+  --rm-dark: #202124;
+
+  background: var(--rm-bg);
+  color: var(--rm-text);
+}
+
+.theme-renmin body {
+  background: var(--rm-bg);
+  color: var(--rm-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.theme-renmin header {
+  background: rgba(32, 33, 36, 0.95) !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(12px) !important;
+  color: #ffffff !important;
+}
+
+.theme-renmin header h1 { color: #ffffff !important; }
+.theme-renmin header p { color: rgba(255,255,255,0.6) !important; }
+
+.theme-renmin .apple-card {
+  background: var(--rm-bg-card);
+  border: 1px solid var(--rm-border);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.theme-renmin .apple-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.theme-renmin .apple-field {
+  background: #ffffff;
+  border: 1px solid var(--rm-border);
+  border-radius: 2px;
+  color: var(--rm-text);
+  height: 40px;
+}
+
+.theme-renmin .apple-field:focus-within {
+  border-color: var(--rm-red);
+  box-shadow: 0 0 0 2px rgba(197, 34, 31, 0.15);
+}
+
+.theme-renmin .apple-input { color: var(--rm-text); font-weight: 500; }
+.theme-renmin .apple-input::placeholder { color: var(--rm-text-dim); }
+
+.theme-renmin .apple-btn {
+  background: var(--rm-red);
+  color: #ffffff;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.theme-renmin .apple-btn:hover { background: var(--rm-red-dark); filter: none; }
+
+.theme-renmin .apple-btn-secondary {
+  background: #ffffff;
+  color: var(--rm-text);
+  border: 1px solid var(--rm-border);
+}
+
+.theme-renmin .apple-segmented {
+  background: var(--rm-bg-alt);
+  border: 1px solid var(--rm-border);
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.theme-renmin .apple-segmented button {
+  color: var(--rm-text-muted);
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 1px;
+}
+
+.theme-renmin .apple-segmented button.active {
+  background: #ffffff;
+  color: var(--rm-red);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--rm-border);
+}
+
+.theme-renmin .apple-tag {
+  background: var(--rm-bg-alt);
+  color: var(--rm-text);
+  border: 1px solid var(--rm-border);
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.theme-renmin .apple-tag-primary { background: rgba(197, 34, 31, 0.08); color: var(--rm-red); border-color: var(--rm-red); }
+.theme-renmin .apple-tag-success { background: rgba(26, 115, 232, 0.08); color: var(--rm-blue); border-color: var(--rm-blue); }
+
+.theme-renmin .text-brand-500, .theme-renmin .text-brand-400 { color: var(--rm-red) !important; }
+.theme-renmin .bg-brand-500 { background-color: var(--rm-red) !important; }
+.theme-renmin .bg-brand-500\/10 { background-color: rgba(197, 34, 31, 0.1) !important; }
+.theme-renmin .from-brand-400 { --tw-gradient-from: #e8453c !important; }
+.theme-renmin .to-brand-600 { --tw-gradient-to: var(--rm-red-dark) !important; }
+.theme-renmin .border-brand-500 { border-color: var(--rm-red) !important; }
+.theme-renmin .ring-brand-500\/20 { --tw-ring-color: rgba(197, 34, 31, 0.15) !important; }
+
+.theme-renmin footer {
+  border-top: 1px solid var(--rm-border) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.theme-renmin .bg-background-100\/95 { background: rgba(255, 255, 255, 0.95) !important; }
+.theme-renmin .bg-background-100\/50 { background: rgba(255, 255, 255, 0.5) !important; }
+.theme-renmin .bg-background-200 { background: var(--rm-bg-alt) !important; }
+.theme-renmin .bg-background-300 { background: var(--rm-border) !important; }
+.theme-renmin .border-background-200 { border-color: var(--rm-border-light) !important; }
+.theme-renmin .border-background-300 { border-color: var(--rm-border) !important; }
+.theme-renmin .text-text-800, .theme-renmin .text-text-700 { color: var(--rm-text) !important; }
+.theme-renmin .text-text-600, .theme-renmin .text-text-500 { color: var(--rm-text-muted) !important; }
+.theme-renmin .text-text-400, .theme-renmin .text-text-300 { color: var(--rm-text-dim) !important; }
+
+.theme-renmin th { color: var(--rm-text-muted) !important; font-weight: 600; }
+.theme-renmin .table-row-hover tr:hover td { background: #f8f9fa !important; }
+
+/* ============================================
+   DAMING THEME (大明王朝1566 - 凝重典雅)
+   ============================================ */
+
+.theme-daming {
+  --dm-bg: #d9d2c5;
+  --dm-bg-alt: #c9c0b0;
+  --dm-bg-card: #e8e2d5;
+  --dm-bg-card-hover: #ddd6c7;
+  --dm-border: #9a8c72;
+  --dm-border-light: #b5a98f;
+  --dm-text: #3d3528;
+  --dm-text-muted: #6b5d48;
+  --dm-text-dim: #8a7d68;
+  --dm-red: #8b3a3a;
+  --dm-red-dark: #6b2a2a;
+  --dm-blue: #3a5b6b;
+  --dm-gold: #a08050;
+  --dm-ink: #2a2520;
+  --dm-jade: #4a6b5a;
+
+  background: var(--dm-bg);
+  color: var(--dm-text);
+}
+
+.theme-daming body {
+  background: var(--dm-bg);
+  color: var(--dm-text);
+  font-family: 'Noto Serif SC', 'SimSun', 'STSong', serif;
+  background-image:
+    radial-gradient(ellipse at top, rgba(160, 128, 80, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(61, 53, 40, 0.05) 0%, transparent 70%);
+  background-attachment: fixed;
+}
+
+.theme-daming header {
+  background: rgba(42, 37, 32, 0.92) !important;
+  border-bottom: 2px solid var(--dm-gold) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #e8e2d5 !important;
+}
+
+.theme-daming header h1 { color: #e8e2d5 !important; font-family: 'Noto Serif SC', serif; }
+.theme-daming header p { color: rgba(232, 226, 213, 0.5) !important; }
+
+.theme-daming .apple-card {
+  background: var(--dm-bg-card);
+  border: 1px solid var(--dm-border-light);
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(61, 53, 40, 0.1);
+  position: relative;
+}
+
+.theme-daming .apple-card::before {
+  content: '';
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border: 1px solid rgba(154, 140, 114, 0.4);
+  pointer-events: none;
+}
+
+.theme-daming .apple-field {
+  background: #f5f0e5;
+  border: 1px solid var(--dm-border-light);
+  border-radius: 0;
+  color: var(--dm-text);
+}
+
+.theme-daming .apple-field:focus-within {
+  border-color: var(--dm-red);
+  box-shadow: 0 0 0 2px rgba(139, 58, 58, 0.12);
+}
+
+.theme-daming .apple-input { color: var(--dm-text); font-weight: 500; font-family: 'Noto Serif SC', serif; }
+.theme-daming .apple-input::placeholder { color: var(--dm-text-dim); }
+
+.theme-daming .apple-btn {
+  background: var(--dm-ink);
+  color: #e8e2d5;
+  border-radius: 0;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.theme-daming .apple-btn:hover { filter: brightness(1.15); }
+
+.theme-daming .apple-btn-secondary {
+  background: var(--dm-bg-alt);
+  color: var(--dm-text);
+  border: 1px solid var(--dm-border);
+}
+
+.theme-daming .apple-segmented {
+  background: var(--dm-bg-alt);
+  border: 1px solid var(--dm-border-light);
+  border-radius: 0;
+  padding: 2px;
+}
+
+.theme-daming .apple-segmented button {
+  color: var(--dm-text-muted);
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 0;
+}
+
+.theme-daming .apple-segmented button.active {
+  background: var(--dm-ink);
+  color: #e8e2d5;
+  font-weight: 600;
+}
+
+.theme-daming .apple-tag {
+  background: var(--dm-bg-alt);
+  color: var(--dm-text);
+  border: 1px solid var(--dm-border-light);
+  border-radius: 0;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.theme-daming .apple-tag-primary { background: rgba(139, 58, 58, 0.12); color: var(--dm-red); border-color: var(--dm-red); }
+.theme-daming .apple-tag-success { background: rgba(74, 107, 90, 0.15); color: var(--dm-jade); border-color: var(--dm-jade); }
+
+.theme-daming .text-brand-500, .theme-daming .text-brand-400 { color: var(--dm-red) !important; }
+.theme-daming .bg-brand-500 { background-color: var(--dm-red) !important; }
+.theme-daming .bg-brand-500\/10 { background-color: rgba(139, 58, 58, 0.12) !important; }
+.theme-daming .from-brand-400 { --tw-gradient-from: #a04a4a !important; }
+.theme-daming .to-brand-600 { --tw-gradient-to: var(--dm-red-dark) !important; }
+.theme-daming .border-brand-500 { border-color: var(--dm-red) !important; }
+.theme-daming .ring-brand-500\/20 { --tw-ring-color: rgba(139, 58, 58, 0.15) !important; }
+
+.theme-daming footer {
+  border-top: 2px solid var(--dm-gold) !important;
+  background: rgba(201, 192, 176, 0.5) !important;
+}
+
+.theme-daming .bg-background-100\/95 { background: rgba(232, 226, 213, 0.95) !important; }
+.theme-daming .bg-background-100\/50 { background: rgba(232, 226, 213, 0.5) !important; }
+.theme-daming .bg-background-200 { background: var(--dm-bg-alt) !important; }
+.theme-daming .bg-background-300 { background: var(--dm-border-light) !important; }
+.theme-daming .border-background-200 { border-color: var(--dm-border-light) !important; }
+.theme-daming .border-background-300 { border-color: var(--dm-border) !important; }
+.theme-daming .text-text-800, .theme-daming .text-text-700 { color: var(--dm-text) !important; }
+.theme-daming .text-text-600, .theme-daming .text-text-500 { color: var(--dm-text-muted) !important; }
+.theme-daming .text-text-400, .theme-daming .text-text-300 { color: var(--dm-text-dim) !important; }
+
+.theme-daming th { color: var(--dm-ink) !important; font-family: 'Noto Serif SC', serif; font-weight: 700; letter-spacing: 0.05em; }
+
+/* ============================================
+   RICKMORTY THEME (瑞克和莫蒂 - 迷幻卡通)
+   ============================================ */
+
+.theme-rickmorty {
+  --rm-bg: #1a1a2e;
+  --rm-bg-alt: #16213e;
+  --rm-bg-card: #0f3460;
+  --rm-bg-card-hover: #1a4a80;
+  --rm-border: #2bd42b;
+  --rm-border-light: #3aef3a;
+  --rm-text: #f0f0f0;
+  --rm-text-muted: #a0b0c0;
+  --rm-text-dim: #708090;
+  --rm-green: #2bd42b;
+  --rm-green-bright: #3aef3a;
+  --rm-yellow: #ffd700;
+  --rm-blue: #00bfff;
+  --rm-pink: #ff69b4;
+  --rm-purple: #9932cc;
+
+  background: var(--rm-bg);
+  color: var(--rm-text);
+}
+
+.theme-rickmorty body {
+  background: var(--rm-bg);
+  color: var(--rm-text);
+  font-family: 'Bangers', 'Noto Sans SC', system-ui, sans-serif;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(43, 212, 43, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 191, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+.theme-rickmorty header {
+  background: rgba(15, 52, 96, 0.9) !important;
+  border-bottom: 3px solid var(--rm-green) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 0 20px rgba(43, 212, 43, 0.2) !important;
+}
+
+.theme-rickmorty h1, .theme-rickmorty h2, .theme-rickmorty h3, .theme-rickmorty h4 {
+  font-family: 'Bangers', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+.theme-rickmorty .apple-card {
+  background: var(--rm-bg-card);
+  border: 2px solid var(--rm-green);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(43, 212, 43, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(43, 212, 43, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-rickmorty .apple-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(43, 212, 43, 0.015) 10px,
+      rgba(43, 212, 43, 0.015) 20px
+    );
+  pointer-events: none;
+}
+
+.theme-rickmorty .apple-card:hover {
+  border-color: var(--rm-green-bright);
+  box-shadow:
+    0 0 0 2px rgba(43, 212, 43, 0.3),
+    0 6px 24px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(43, 212, 43, 0.15),
+    inset 0 0 20px rgba(43, 212, 43, 0.08);
+}
+
+.theme-rickmorty .apple-field {
+  background: var(--rm-bg-alt);
+  border: 2px solid var(--rm-purple);
+  border-radius: 8px;
+  color: var(--rm-text);
+  position: relative;
+}
+
+.theme-rickmorty .apple-field:focus-within {
+  border-color: var(--rm-green-bright);
+  box-shadow: 0 0 12px rgba(43, 212, 43, 0.4);
+}
+
+.theme-rickmorty .apple-input {
+  color: var(--rm-yellow);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.theme-rickmorty .apple-input::placeholder { color: var(--rm-text-dim); }
+
+.theme-rickmorty .apple-btn {
+  background: linear-gradient(180deg, var(--rm-green) 0%, #1a9a1a 100%);
+  color: #0a0a0a;
+  border-radius: 8px;
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 0 #0d6b0d,
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid #0d6b0d;
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+.theme-rickmorty .apple-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 4px 0 #0d6b0d,
+    0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.theme-rickmorty .apple-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 #0d6b0d,
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-rickmorty .apple-btn-secondary {
+  background: var(--rm-bg-alt);
+  color: var(--rm-yellow);
+  border: 2px solid var(--rm-purple);
+  box-shadow: 0 3px 0 var(--rm-purple);
+}
+
+.theme-rickmorty .apple-segmented {
+  background: var(--rm-bg-alt);
+  border: 2px solid var(--rm-purple);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.theme-rickmorty .apple-segmented button {
+  color: var(--rm-text-muted);
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+}
+
+.theme-rickmorty .apple-segmented button.active {
+  background: linear-gradient(180deg, var(--rm-yellow) 0%, #e6b800 100%);
+  color: #1a1a2e;
+  font-weight: 400;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 0 #b8960b;
+  border: 1px solid #b8960b;
+}
+
+.theme-rickmorty .apple-tag {
+  background: var(--rm-bg-alt);
+  color: var(--rm-yellow);
+  border: 2px solid var(--rm-purple);
+  border-radius: 6px;
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.theme-rickmorty .apple-tag-primary { background: rgba(43, 212, 43, 0.2); color: var(--rm-green-bright); border-color: var(--rm-green); }
+.theme-rickmorty .apple-tag-success { background: rgba(0, 191, 255, 0.2); color: var(--rm-blue); border-color: var(--rm-blue); }
+.theme-rickmorty .apple-tag-warning { background: rgba(255, 215, 0, 0.2); color: var(--rm-yellow); border-color: var(--rm-yellow); }
+.theme-rickmorty .apple-tag-destructive { background: rgba(255, 105, 180, 0.2); color: var(--rm-pink); border-color: var(--rm-pink); }
+
+.theme-rickmorty .text-brand-500, .theme-rickmorty .text-brand-400 { color: var(--rm-green-bright) !important; }
+.theme-rickmorty .bg-brand-500 { background-color: var(--rm-green) !important; }
+.theme-rickmorty .bg-brand-500\/10 { background-color: rgba(43, 212, 43, 0.15) !important; }
+.theme-rickmorty .from-brand-400 { --tw-gradient-from: var(--rm-green-bright) !important; }
+.theme-rickmorty .to-brand-600 { --tw-gradient-to: #1a9a1a !important; }
+.theme-rickmorty .border-brand-500 { border-color: var(--rm-green) !important; }
+.theme-rickmorty .ring-brand-500\/20 { --tw-ring-color: rgba(43, 212, 43, 0.25) !important; }
+
+.theme-rickmorty footer {
+  border-top: 3px solid var(--rm-green) !important;
+  background: rgba(15, 52, 96, 0.6) !important;
+  box-shadow: 0 -4px 20px rgba(43, 212, 43, 0.1) !important;
+}
+
+.theme-rickmorty .bg-background-100\/95 { background: rgba(15, 52, 96, 0.95) !important; }
+.theme-rickmorty .bg-background-100\/50 { background: rgba(15, 52, 96, 0.5) !important; }
+.theme-rickmorty .bg-background-200 { background: var(--rm-bg-alt) !important; }
+.theme-rickmorty .bg-background-300 { background: var(--rm-purple) !important; }
+.theme-rickmorty .border-background-200 { border-color: rgba(153, 50, 204, 0.4) !important; }
+.theme-rickmorty .border-background-300 { border-color: var(--rm-purple) !important; }
+.theme-rickmorty .text-text-800, .theme-rickmorty .text-text-700 { color: var(--rm-text) !important; }
+.theme-rickmorty .text-text-600, .theme-rickmorty .text-text-500 { color: var(--rm-text-muted) !important; }
+.theme-rickmorty .text-text-400, .theme-rickmorty .text-text-300 { color: var(--rm-text-dim) !important; }
+
+.theme-rickmorty th {
+  color: var(--rm-yellow) !important;
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.theme-rickmorty .recharts-default-tooltip {
+  background: rgba(22, 33, 62, 0.97) !important;
+  border: 2px solid var(--rm-green) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 20px rgba(43, 212, 43, 0.3) !important;
+}
+
+.theme-rickmorty .recharts-tooltip-label {
+  color: var(--rm-yellow) !important;
+  font-family: 'Bangers', sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: 0.05em;
+}
+
+.theme-rickmorty .recharts-tooltip-item { color: var(--rm-text-muted) !important; }
+.theme-rickmorty .recharts-cartesian-axis-tick text { fill: var(--rm-text-dim) !important; }
+.theme-rickmorty .recharts-legend-item-text { color: var(--rm-text-muted) !important; }
+.theme-rickmorty .recharts-cartesian-grid line { stroke: rgba(153, 50, 204, 0.3) !important; }
+
+.theme-rickmorty ::-webkit-scrollbar-thumb { background: var(--rm-purple); border-radius: 4px; }
+.theme-rickmorty ::-webkit-scrollbar-thumb:hover { background: var(--rm-green); }
+
+/* Theme toggle button base */
 .theme-toggle-btn {
   display: inline-flex;
   align-items: center;
@@ -710,19 +1674,465 @@ select option {
   color: #007AFF;
 }
 
-.theme-warhammer .theme-toggle-btn {
-  background: var(--wh-bg-card);
-  border-color: var(--wh-border);
-  color: var(--wh-gold);
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  font-size: 10px;
+/* ============================================
+   THEME-SPECIFIC OVERRIDES
+   ============================================ */
+
+/* ---- WULIN THEME ADDITIONS (武林外传 - 同福客栈) ---- */
+
+.theme-wulin .theme-toggle-btn {
+  background: var(--wl-bg-card);
+  border-color: var(--wl-border);
+  color: var(--wl-text);
+  font-family: 'Noto Serif SC', serif;
   border-radius: 4px;
 }
 
-.theme-warhammer .theme-toggle-btn:hover {
-  border-color: var(--wh-gold);
-  background: rgba(212, 168, 83, 0.1);
+.theme-wulin .theme-toggle-btn:hover {
+  border-color: var(--wl-red);
+  color: var(--wl-red);
 }
+
+.theme-wulin .theme-switcher-menu {
+  background: var(--wl-bg-card);
+  border: 1px solid var(--wl-border);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(74, 55, 40, 0.15);
+}
+
+.theme-wulin .theme-switcher-menu button {
+  color: var(--wl-text);
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.theme-wulin .theme-switcher-menu button:hover {
+  background: var(--wl-bg-alt);
+}
+
+.theme-wulin .theme-switcher-menu button.active {
+  background: rgba(160, 50, 44, 0.1);
+  color: var(--wl-red);
+}
+
+/* Wulin quick buttons */
+.theme-wulin .bg-brand-500.text-white {
+  background: var(--wl-red) !important;
+  color: var(--wl-bg-card) !important;
+  box-shadow: 0 1px 3px rgba(160, 50, 44, 0.3) !important;
+}
+
+/* Wulin header badge */
+.theme-wulin .bg-\[\#f2f2f7\].rounded-full {
+  background: var(--wl-bg-alt) !important;
+  border: 1px solid var(--wl-border-light);
+}
+
+.theme-wulin .text-\[\#34C759\] { color: var(--wl-green) !important; }
+
+/* Wulin table */
+.theme-wulin .table-row-hover tr:hover td {
+  background: rgba(160, 50, 44, 0.04) !important;
+}
+
+.theme-wulin thead tr {
+  background: var(--wl-bg-alt) !important;
+  border-bottom: 2px solid var(--wl-border) !important;
+}
+
+.theme-wulin tbody tr { border-bottom-color: var(--wl-border-light) !important; }
+
+/* Wulin chart */
+.theme-wulin .recharts-default-tooltip {
+  background: var(--wl-bg-card) !important;
+  border: 1px solid var(--wl-border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 8px 24px rgba(74, 55, 40, 0.12) !important;
+}
+
+.theme-wulin .recharts-tooltip-label {
+  color: var(--wl-red) !important;
+  font-family: 'Noto Serif SC', serif !important;
+  font-weight: 700 !important;
+}
+
+.theme-wulin .recharts-tooltip-item { color: var(--wl-text-muted) !important; }
+.theme-wulin .recharts-cartesian-axis-tick text { fill: var(--wl-text-dim) !important; }
+.theme-wulin .recharts-legend-item-text { color: var(--wl-text-muted) !important; }
+.theme-wulin .recharts-cartesian-grid line { stroke: var(--wl-border-light) !important; }
+
+/* Wulin search input */
+.theme-wulin .bg-background-200.border {
+  background: #fffdf5 !important;
+  border-color: var(--wl-border-light) !important;
+}
+
+/* ---- RENMIN THEME ADDITIONS (人民的名义 - 冷峻纪实) ---- */
+
+.theme-renmin .theme-toggle-btn {
+  background: #ffffff;
+  border-color: var(--rm-border);
+  color: var(--rm-text);
+  font-weight: 600;
+  border-radius: 2px;
+}
+
+.theme-renmin .theme-toggle-btn:hover {
+  border-color: var(--rm-red);
+  color: var(--rm-red);
+}
+
+.theme-renmin .theme-switcher-menu {
+  background: #ffffff;
+  border: 1px solid var(--rm-border);
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.theme-renmin .theme-switcher-menu button {
+  color: var(--rm-text);
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 1px;
+}
+
+.theme-renmin .theme-switcher-menu button:hover {
+  background: var(--rm-bg-alt);
+}
+
+.theme-renmin .theme-switcher-menu button.active {
+  background: rgba(197, 34, 31, 0.08);
+  color: var(--rm-red);
+  font-weight: 600;
+}
+
+/* Renmin quick buttons - fix white on white selected state */
+.theme-renmin .bg-brand-500.text-white {
+  background: var(--rm-red) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(197, 34, 31, 0.3) !important;
+}
+
+/* Renmin header badge */
+.theme-renmin .bg-\[\#f2f2f7\].rounded-full {
+  background: var(--rm-bg-alt) !important;
+  border: 1px solid var(--rm-border);
+}
+
+/* Renmin table */
+.theme-renmin .table-row-hover tr:hover td {
+  background: #f8f9fa !important;
+}
+
+.theme-renmin thead tr {
+  background: #f8f9fa !important;
+  border-bottom: 2px solid var(--rm-border) !important;
+}
+
+.theme-renmin th {
+  color: var(--rm-text-muted) !important;
+  font-weight: 600;
+}
+
+.theme-renmin tbody tr { border-bottom-color: var(--rm-border-light) !important; }
+
+/* Renmin chart */
+.theme-renmin .recharts-default-tooltip {
+  background: #ffffff !important;
+  border: 1px solid var(--rm-border) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.theme-renmin .recharts-tooltip-label {
+  color: var(--rm-red) !important;
+  font-weight: 700 !important;
+}
+
+.theme-renmin .recharts-tooltip-item { color: var(--rm-text-muted) !important; }
+.theme-renmin .recharts-cartesian-axis-tick text { fill: var(--rm-text-dim) !important; }
+.theme-renmin .recharts-legend-item-text { color: var(--rm-text-muted) !important; }
+.theme-renmin .recharts-cartesian-grid line { stroke: var(--rm-border-light) !important; }
+
+/* Renmin header dark override */
+.theme-renmin header {
+  background: var(--rm-dark) !important;
+  border-bottom: none !important;
+}
+
+.theme-renmin header h1 { color: #ffffff !important; }
+.theme-renmin header p { color: rgba(255,255,255,0.6) !important; }
+
+.theme-renmin header .theme-toggle-btn {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #ffffff;
+}
+
+.theme-renmin header .theme-toggle-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  color: #ffffff;
+}
+
+.theme-renmin header .theme-switcher-menu {
+  background: #ffffff;
+}
+
+.theme-renmin header .bg-\[\#f2f2f7\].rounded-full {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.theme-renmin header .text-text-600 { color: rgba(255,255,255,0.7) !important; }
+
+.theme-renmin header .text-\[\#34C759\] { color: #34d058 !important; }
+
+/* ---- DAMING THEME ADDITIONS (大明王朝1566 - 凝重典雅) ---- */
+
+.theme-daming .theme-toggle-btn {
+  background: var(--dm-bg-card);
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+  font-family: 'Noto Serif SC', serif;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.theme-daming .theme-toggle-btn:hover {
+  border-color: var(--dm-red);
+  color: var(--dm-red);
+}
+
+.theme-daming .theme-switcher-menu {
+  background: var(--dm-bg-card);
+  border: 1px solid var(--dm-border);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(61, 53, 40, 0.2);
+}
+
+.theme-daming .theme-switcher-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  background: var(--dm-gold);
+  opacity: 0.4;
+}
+
+.theme-daming .theme-switcher-menu button {
+  color: var(--dm-text);
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 0;
+}
+
+.theme-daming .theme-switcher-menu button:hover {
+  background: var(--dm-bg-alt);
+}
+
+.theme-daming .theme-switcher-menu button.active {
+  background: rgba(139, 58, 58, 0.1);
+  color: var(--dm-red);
+  font-weight: 600;
+}
+
+/* Daming quick buttons */
+.theme-daming .bg-brand-500.text-white {
+  background: var(--dm-ink) !important;
+  color: var(--dm-bg-card) !important;
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.3) !important;
+}
+
+/* Daming header badge */
+.theme-daming .bg-\[\#f2f2f7\].rounded-full {
+  background: rgba(232, 226, 213, 0.1) !important;
+  border: 1px solid rgba(232, 226, 213, 0.2);
+}
+
+.theme-daming header .text-text-600 { color: rgba(232, 226, 213, 0.7) !important; }
+
+.theme-daming header .text-\[\#34C759\] { color: #6ab052 !important; }
+
+/* Daming chart */
+.theme-daming .recharts-default-tooltip {
+  background: var(--dm-bg-card) !important;
+  border: 1px solid var(--dm-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 8px 24px rgba(61, 53, 40, 0.15) !important;
+}
+
+.theme-daming .recharts-tooltip-label {
+  color: var(--dm-red) !important;
+  font-family: 'Noto Serif SC', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+}
+
+.theme-daming .recharts-tooltip-item { color: var(--dm-text-muted) !important; }
+.theme-daming .recharts-cartesian-axis-tick text { fill: var(--dm-text-dim) !important; }
+.theme-daming .recharts-legend-item-text { color: var(--dm-text-muted) !important; }
+.theme-daming .recharts-cartesian-grid line { stroke: var(--dm-border-light) !important; }
+
+/* Daming table */
+.theme-daming .table-row-hover tr:hover td {
+  background: rgba(139, 58, 58, 0.04) !important;
+}
+
+.theme-daming thead tr {
+  background: var(--dm-bg-alt) !important;
+  border-bottom: 2px solid var(--dm-gold) !important;
+}
+
+.theme-daming tbody tr { border-bottom-color: var(--dm-border-light) !important; }
+
+/* Daming scrollbar */
+.theme-daming ::-webkit-scrollbar-thumb {
+  background: var(--dm-border-light);
+  border-radius: 0;
+}
+.theme-daming ::-webkit-scrollbar-thumb:hover { background: var(--dm-gold); }
+
+/* ---- RICKMORTY THEME ADDITIONS (瑞克和莫蒂 - 迷幻卡通) ---- */
+
+.theme-rickmorty .theme-toggle-btn {
+  background: var(--rm-bg-alt);
+  border: 2px solid var(--rm-purple);
+  color: var(--rm-yellow);
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 var(--rm-purple);
+  transition: all 0.15s ease;
+}
+
+.theme-rickmorty .theme-toggle-btn:hover {
+  border-color: var(--rm-green);
+  color: var(--rm-green-bright);
+  box-shadow: 0 3px 0 var(--rm-green);
+  transform: translateY(-1px);
+}
+
+.theme-rickmorty .theme-switcher-menu {
+  background: var(--rm-bg-card);
+  border: 2px solid var(--rm-green);
+  border-radius: 10px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(43, 212, 43, 0.2);
+}
+
+.theme-rickmorty .theme-switcher-menu button {
+  color: var(--rm-text);
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+}
+
+.theme-rickmorty .theme-switcher-menu button:hover {
+  background: rgba(43, 212, 43, 0.15);
+  color: var(--rm-green-bright);
+}
+
+.theme-rickmorty .theme-switcher-menu button.active {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, rgba(43, 212, 43, 0.1) 100%);
+  color: var(--rm-yellow);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+/* Rick and Morty quick buttons */
+.theme-rickmorty .bg-brand-500.text-white {
+  background: linear-gradient(180deg, var(--rm-green) 0%, #1a9a1a 100%) !important;
+  color: #0a0a0a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 0 #0d6b0d !important;
+  border: 1px solid #0d6b0d !important;
+  font-family: 'Bangers', sans-serif;
+  font-weight: 400;
+}
+
+/* Rick and Morty header badge */
+.theme-rickmorty .bg-\[\#f2f2f7\].rounded-full {
+  background: var(--rm-bg-alt) !important;
+  border: 2px solid var(--rm-purple);
+}
+
+.theme-rickmorty .text-\[\#34C759\] { color: var(--rm-green-bright) !important; }
+
+/* Rick and Morty table */
+.theme-rickmorty .table-row-hover tr:hover td {
+  background: rgba(43, 212, 43, 0.08) !important;
+}
+
+.theme-rickmorty thead tr {
+  background: var(--rm-bg-alt) !important;
+  border-bottom: 2px solid var(--rm-green) !important;
+}
+
+.theme-rickmorty tbody tr { border-bottom-color: rgba(153, 50, 204, 0.3) !important; }
+
+/* Rick and Morty search input */
+.theme-rickmorty .bg-background-200.border {
+  background: var(--rm-bg-alt) !important;
+  border-color: var(--rm-purple) !important;
+}
+
+/* ---- COMMON SELECTED STATE FIXES ---- */
+
+/* Ensure segmented active state has proper contrast in all themes */
+.theme-renmin .apple-segmented button.active {
+  background: var(--rm-red);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(197, 34, 31, 0.25);
+}
+
+.theme-wulin .apple-segmented button.active {
+  background: var(--wl-red);
+  color: #faf3e0;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(160, 50, 44, 0.2);
+}
+
+.theme-daming .apple-segmented button.active {
+  background: var(--dm-ink);
+  color: #e8e2d5;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(42, 37, 32, 0.25);
+}
+
+/* Month input color scheme per theme */
+.theme-wulin input[type='month'] { color-scheme: light; }
+.theme-renmin input[type='month'] { color-scheme: light; }
+.theme-daming input[type='month'] { color-scheme: light; }
+.theme-rickmorty input[type='month'] { color-scheme: dark; }
+
+/* Select dropdown arrow per theme */
+.theme-wulin select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a0322c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+.theme-wulin select option { background: var(--wl-bg-card); color: var(--wl-text); }
+
+.theme-renmin select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c5221f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+.theme-renmin select option { background: #ffffff; color: var(--rm-text); }
+
+.theme-daming select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b3a3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+.theme-daming select option { background: var(--dm-bg-card); color: var(--dm-text); }
+
+.theme-rickmorty select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232bd42b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+.theme-rickmorty select option { background: var(--rm-bg-card); color: var(--rm-text); }
