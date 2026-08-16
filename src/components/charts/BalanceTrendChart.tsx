@@ -10,12 +10,16 @@ import {
 } from 'recharts';
 import type { PaymentRecord } from '../../types';
 import { formatCurrency } from '../../lib/mortgage';
+import { getChartColors, type Theme } from '../../lib/themeColors';
 
 interface Props {
   records: PaymentRecord[];
+  theme?: Theme;
 }
 
-export default function BalanceTrendChart({ records }: Props) {
+export default function BalanceTrendChart({ records, theme = 'apple' }: Props) {
+  const colors = getChartColors(theme);
+
   const data = records.map((r) => ({
     month: r.month,
     balance: Math.round(r.remainingBalance),
@@ -34,20 +38,20 @@ export default function BalanceTrendChart({ records }: Props) {
         <AreaChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
           <defs>
             <linearGradient id="balanceGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#007AFF" stopOpacity={0.25} />
-              <stop offset="100%" stopColor="#007AFF" stopOpacity={0} />
+              <stop offset="0%" stopColor={colors.primary} stopOpacity={0.25} />
+              <stop offset="100%" stopColor={colors.primary} stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e5ea" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} vertical={false} />
           <XAxis
             dataKey="month"
-            tick={{ fontSize: 10, fill: '#8e8e93' }}
+            tick={{ fontSize: 10, fill: colors.text }}
             interval={Math.max(Math.floor(data.length / 12), 1)}
-            axisLine={{ stroke: '#e5e5ea' }}
+            axisLine={{ stroke: colors.grid }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fontSize: 10, fill: '#8e8e93' }}
+            tick={{ fontSize: 10, fill: colors.text }}
             tickFormatter={(v) => `${(v / 10000).toFixed(0)}万`}
             axisLine={false}
             tickLine={false}
@@ -59,7 +63,7 @@ export default function BalanceTrendChart({ records }: Props) {
           <Area
             type="monotone"
             dataKey="balance"
-            stroke="#007AFF"
+            stroke={colors.primary}
             strokeWidth={2}
             fill="url(#balanceGradient)"
             dot={false}
@@ -70,7 +74,7 @@ export default function BalanceTrendChart({ records }: Props) {
               x={p.month}
               y={p.balance}
               r={5}
-              fill="#34C759"
+              fill={colors.success}
               stroke="#ffffff"
               strokeWidth={2}
             />

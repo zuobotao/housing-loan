@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Calculator, Shield } from 'lucide-react';
+import { Calculator, Shield, Sword } from 'lucide-react';
 import type { LoanParams } from './types';
 import { calcMortgage } from './lib/mortgage';
 import LoanInputPanel from './components/LoanInputPanel';
@@ -9,7 +9,11 @@ import AnnualSummary from './components/AnnualSummary';
 import BalanceTrendChart from './components/charts/BalanceTrendChart';
 import PrincipalInterestPie from './components/charts/PrincipalInterestPie';
 
+export type Theme = 'apple' | 'warhammer';
+
 export default function App() {
+  const [theme, setTheme] = useState<Theme>('apple');
+
   const [params, setParams] = useState<LoanParams>({
     principal: 1000000,
     annualRate: 4.2,
@@ -22,8 +26,14 @@ export default function App() {
 
   const result = useMemo(() => calcMortgage(params), [params]);
 
+  const toggleTheme = () => {
+    setTheme(theme === 'apple' ? 'warhammer' : 'apple');
+  };
+
+  const themeClass = theme === 'warhammer' ? 'theme-warhammer' : 'theme-apple';
+
   return (
-    <div className="min-h-screen bg-[#f7f7fa] text-text-800">
+    <div className={`min-h-screen ${themeClass} transition-colors duration-300`}>
       {/* Navigation Bar */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-background-300">
         <div className="max-w-[1400px] mx-auto px-6 py-3.5 flex items-center justify-between">
@@ -45,6 +55,14 @@ export default function App() {
               <Shield className="w-3.5 h-3.5 text-[#34C759]" />
               <span className="text-[11px] font-medium text-text-600">本地计算</span>
             </div>
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-btn"
+              title={theme === 'apple' ? '切换至战锤风格' : '切换至苹果风格'}
+            >
+              <Sword className="w-3.5 h-3.5" />
+              {theme === 'apple' ? '战锤' : '苹果'}
+            </button>
           </div>
         </div>
       </header>
@@ -63,13 +81,13 @@ export default function App() {
 
         {/* Charts Row - Reduced to 2 */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-slide-up animate-backwards animation-delay-2">
-          <BalanceTrendChart records={result.records} />
-          <PrincipalInterestPie result={result} />
+          <BalanceTrendChart records={result.records} theme={theme} />
+          <PrincipalInterestPie result={result} theme={theme} />
         </section>
 
         {/* Annual / Monthly Summary with Toggle */}
         <section className="animate-slide-up animate-backwards animation-delay-3">
-          <AnnualSummary records={result.records} startDate={params.startDate} />
+          <AnnualSummary records={result.records} startDate={params.startDate} theme={theme} />
         </section>
 
         {/* Detail Table with inline editing */}

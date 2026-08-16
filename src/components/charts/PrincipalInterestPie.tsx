@@ -1,15 +1,19 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import type { CalcResult } from '../../types';
 import { formatCurrency } from '../../lib/mortgage';
+import { getChartColors, type Theme } from '../../lib/themeColors';
 
 interface Props {
   result: CalcResult;
+  theme?: Theme;
 }
 
-export default function PrincipalInterestPie({ result }: Props) {
+export default function PrincipalInterestPie({ result, theme = 'apple' }: Props) {
+  const colors = getChartColors(theme);
+
   const data = [
-    { name: '本金', value: Math.round(result.totalPrincipal), color: '#007AFF' },
-    { name: '利息', value: Math.round(result.totalInterest), color: '#FF9500' },
+    { name: '本金', value: Math.round(result.totalPrincipal), color: colors.primary },
+    { name: '利息', value: Math.round(result.totalInterest), color: colors.secondary },
   ];
   const total = data.reduce((s, d) => s + d.value, 0);
 
@@ -41,8 +45,8 @@ export default function PrincipalInterestPie({ result }: Props) {
             formatter={(value, entry) => {
               const pct = total > 0 ? ((entry.payload?.value || 0) / total * 100).toFixed(1) : '0';
               return (
-                <span style={{ color: '#1d1d1f', fontWeight: 500 }}>
-                  {value} <span style={{ color: '#8e8e93' }}>{pct}%</span>
+                <span style={{ color: colors.textStrong, fontWeight: 500 }}>
+                  {value} <span style={{ color: colors.text }}>{pct}%</span>
                 </span>
               );
             }}

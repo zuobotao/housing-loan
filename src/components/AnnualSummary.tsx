@@ -11,10 +11,12 @@ import {
 } from 'recharts';
 import type { PaymentRecord } from '../types';
 import { formatCurrency, monthToYearMonth } from '../lib/mortgage';
+import { getChartColors, type Theme } from '../lib/themeColors';
 
 interface Props {
   records: PaymentRecord[];
   startDate?: string;
+  theme?: Theme;
 }
 
 interface AnnualData {
@@ -25,8 +27,9 @@ interface AnnualData {
   年末剩余本金: number;
 }
 
-export default function AnnualSummary({ records, startDate }: Props) {
+export default function AnnualSummary({ records, startDate, theme = 'apple' }: Props) {
   const [view, setView] = useState<'year' | 'month'>('year');
+  const colors = getChartColors(theme);
 
   const annualMap = new Map<number, AnnualData>();
 
@@ -77,13 +80,13 @@ export default function AnnualSummary({ records, startDate }: Props) {
             onClick={() => setView('year')}
             className={view === 'year' ? 'active' : ''}
           >
-            年度
+            年度统计
           </button>
           <button
             onClick={() => setView('month')}
             className={view === 'month' ? 'active' : ''}
           >
-            月度
+            月度明细
           </button>
         </div>
       </div>
@@ -92,27 +95,27 @@ export default function AnnualSummary({ records, startDate }: Props) {
       <div className="px-5 pt-5 pb-2">
         <ResponsiveContainer width="100%" height={view === 'year' ? 240 : 280}>
           <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e5ea" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: 10, fill: '#8e8e93' }}
+              tick={{ fontSize: 10, fill: colors.text }}
               interval={view === 'month' ? Math.max(Math.floor(chartData.length / 12), 1) : 0}
               angle={view === 'month' ? -45 : 0}
               textAnchor={view === 'month' ? 'end' : 'middle'}
               height={view === 'month' ? 60 : 30}
-              axisLine={{ stroke: '#e5e5ea' }}
+              axisLine={{ stroke: colors.grid }}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 10, fill: '#8e8e93' }}
+              tick={{ fontSize: 10, fill: colors.text }}
               tickFormatter={(v) => `${(v / 10000).toFixed(0)}万`}
               axisLine={false}
               tickLine={false}
             />
             <Tooltip formatter={(value: number) => formatCurrency(value)} />
             <Legend wrapperStyle={{ fontSize: '12px' }} />
-            <Bar dataKey="本金" stackId="a" fill="#007AFF" radius={[0, 0, 0, 0]} />
-            <Bar dataKey="利息" stackId="a" fill="#FF9500" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="本金" stackId="a" fill={colors.primary} radius={[0, 0, 0, 0]} />
+            <Bar dataKey="利息" stackId="a" fill={colors.secondary} radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
