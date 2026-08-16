@@ -954,6 +954,460 @@ select option { background: #ffffff; color: #1d1d1f; }
 }
 
 /* ============================================
+   WARHAMMER DEEP CUTS - Emperor / Custodes / Chaos / Horus
+   ============================================ */
+
+/* ---- Emperor's Auramite Gold (帝皇极光金质感) ---- */
+
+.theme-warhammer {
+  --wh-auramite: #f0d070;
+  --wh-auramite-bright: #ffe890;
+  --wh-auramite-dark: #c9a040;
+  --wh-auramite-deep: #8b6914;
+  --wh-custodes-red: #8b0000;
+  --wh-custodes-red-bright: #c41e3a;
+  --wh-custodes-red-dark: #5c0000;
+  --wh-marble-white: #e8e0d0;
+  --wh-marble-grey: #b8b0a0;
+  --wh-khorne-red: #8b0000;
+  --wh-khorne-brass: #cd853f;
+  --wh-tzeentch-blue: #1e4d8b;
+  --wh-tzeentch-gold: #daa520;
+  --wh-nurgle-green: #556b2f;
+  --wh-nurgle-rust: #8b4513;
+  --wh-slaanesh-pink: #c71585;
+  --wh-slaanesh-purple: #6a0dad;
+  --wh-legion-black: #0a0a0a;
+  --wh-legion-gold: #b8860b;
+}
+
+/* Emperor's radiance - golden light from above (帝皇圣光) */
+.theme-warhammer body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 300px;
+  background: radial-gradient(ellipse at top center, rgba(240, 208, 112, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Marble texture for important sections (大理石纹理) */
+.wh-marble {
+  background:
+    linear-gradient(135deg, var(--wh-marble-white) 0%, var(--wh-bg-card) 50%, var(--wh-marble-grey) 100%);
+  position: relative;
+}
+
+.wh-marble::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 30 Q25 28, 50 35 T100 30' fill='none' stroke='%23d4a853' stroke-width='0.3' opacity='0.15'/%3E%3Cpath d='M0 60 Q30 55, 60 65 T100 60' fill='none' stroke='%23d4a853' stroke-width='0.2' opacity='0.1'/%3E%3Cpath d='M0 85 Q20 80, 45 88 T100 85' fill='none' stroke='%238b6914' stroke-width='0.2' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Winged Skull decoration (翼骷髅徽章 - 帝国核心符号) */
+.wh-winged-skull {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wh-gold);
+  filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.5));
+}
+
+/* Aquila-style header glow (天鹰式头部光晕) */
+.theme-warhammer header {
+  position: relative;
+  overflow: visible;
+}
+
+.theme-warhammer header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(240, 208, 112, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custodes-style primary button (禁军风格主按钮) */
+.theme-warhammer .apple-btn {
+  background: linear-gradient(180deg,
+    var(--wh-auramite-bright) 0%,
+    var(--wh-gold) 25%,
+    var(--wh-gold-dark) 60%,
+    #6b5010 100%);
+  border-color: var(--wh-auramite-deep);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.theme-warhammer .apple-btn:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(240, 208, 112, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Custodes red cloak accent (禁军红斗篷装饰 - 用于强调) */
+.wh-custodes-accent {
+  background: linear-gradient(180deg, var(--wh-custodes-red-bright) 0%, var(--wh-custodes-red) 50%, var(--wh-custodes-red-dark) 100%);
+  color: var(--wh-auramite);
+  border: 1px solid var(--wh-custodes-red-dark);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Chaos Gods (混沌四神 - 用于不同状态/标签) ---- */
+
+/* Khorne - Blood God (恐虐 - 血与黄铜) */
+.wh-tag-khorne {
+  background: linear-gradient(180deg, rgba(139, 0, 0, 0.3) 0%, rgba(92, 0, 0, 0.2) 100%) !important;
+  color: #ff4444 !important;
+  border-color: var(--wh-khorne-red) !important;
+  text-shadow: 0 0 6px rgba(255, 68, 68, 0.3);
+}
+
+/* Tzeentch - Changer of Ways (奸奇 - 变化之神 蓝金) */
+.wh-tag-tzeentch {
+  background: linear-gradient(180deg, rgba(30, 77, 139, 0.3) 0%, rgba(20, 50, 90, 0.2) 100%) !important;
+  color: #6bb3ff !important;
+  border-color: var(--wh-tzeentch-blue) !important;
+  text-shadow: 0 0 6px rgba(107, 179, 255, 0.3);
+}
+
+/* Nurgle - Grandfather of Plague (纳垢 - 瘟疫之父 绿锈) */
+.wh-tag-nurgle {
+  background: linear-gradient(180deg, rgba(85, 107, 47, 0.3) 0%, rgba(60, 75, 30, 0.2) 100%) !important;
+  color: #9acd32 !important;
+  border-color: var(--wh-nurgle-green) !important;
+  text-shadow: 0 0 6px rgba(154, 205, 50, 0.2);
+}
+
+/* Slaanesh - Dark Prince (色孽 - 黑暗王子 紫粉) */
+.wh-tag-slaanesh {
+  background: linear-gradient(180deg, rgba(106, 13, 173, 0.3) 0%, rgba(70, 8, 115, 0.2) 100%) !important;
+  color: #ff69b4 !important;
+  border-color: var(--wh-slaanesh-purple) !important;
+  text-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
+}
+
+/* ---- Horus Heresy / Black Legion (荷鲁斯之乱 / 黑色军团) ---- */
+
+.wh-horus-divider {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--wh-legion-black) 10%,
+    var(--wh-legion-gold) 30%,
+    var(--wh-auramite) 50%,
+    var(--wh-legion-gold) 70%,
+    var(--wh-legion-black) 90%,
+    transparent 100%);
+  opacity: 0.6;
+}
+
+/* Black Legion style - for dark/alternate sections */
+.wh-black-legion {
+  background: linear-gradient(180deg, #0f0a08 0%, #1a1410 100%);
+  border: 1px solid var(--wh-legion-gold);
+  box-shadow:
+    inset 0 1px 0 rgba(184, 134, 11, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* ---- Imperial Proverbs / Litanies (帝国箴言 & 祷文) ---- */
+
+.wh-liturgy {
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--wh-gold-dark);
+  font-style: italic;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.wh-liturgy-strong {
+  color: var(--wh-auramite);
+  text-shadow: 0 0 8px rgba(240, 208, 112, 0.3);
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* ---- Custodian Guard Card Accent (禁军守卫卡片角饰) ---- */
+
+.theme-warhammer .apple-card {
+  position: relative;
+}
+
+/* Left side - Custodes spear / guardian spear motif */
+.theme-warhammer .apple-card > *:first-child {
+  position: relative;
+}
+
+/* Emperor's halo effect on title (帝皇光环 - 标题效果) */
+.theme-warhammer h1,
+.theme-warhammer h2,
+.theme-warhammer h3 {
+  position: relative;
+}
+
+/* Add subtle gold outline to icons in warhammer theme */
+.theme-warhammer svg.text-white,
+.theme-warhammer .from-brand-400 {
+  filter: drop-shadow(0 0 4px rgba(240, 208, 112, 0.4));
+}
+
+/* ---- Warp / Immaterium glow (亚空间辉光 - 用于强调/悬停) ---- */
+
+.theme-warhammer .apple-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(240, 208, 112, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(212, 168, 83, 0.08);
+}
+
+/* Warp rift effect for special values (亚空间裂隙 - 特殊数值) */
+.wh-warp-text {
+  color: var(--wh-auramite-bright);
+  text-shadow:
+    0 0 8px rgba(240, 208, 112, 0.5),
+    0 0 16px rgba(212, 168, 83, 0.3),
+    0 0 24px rgba(196, 30, 58, 0.15);
+}
+
+/* ---- Adeptus Terra seal style (泰拉修会印章风格按钮) ---- */
+
+.wh-seal-btn {
+  background: radial-gradient(circle, var(--wh-gold) 0%, var(--wh-gold-dark) 70%, #6b5010 100%);
+  border: 2px solid var(--wh-auramite-deep);
+  border-radius: 50%;
+  color: #1a1410;
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Gothic arch decoration (哥特尖拱装饰) ---- */
+
+.wh-gothic-arch {
+  position: relative;
+  padding-top: 20px;
+}
+
+.wh-gothic-arch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  border-left: 1px solid var(--wh-gold-dark);
+  border-right: 1px solid var(--wh-gold-dark);
+  border-top: 1px solid var(--wh-gold-dark);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  opacity: 0.4;
+}
+
+/* ---- Skull & cogwheel pattern border (骷髅齿轮纹边) ---- */
+
+.wh-skull-border {
+  border-top: 1px solid var(--wh-border);
+  position: relative;
+}
+
+.wh-skull-border::before {
+  content: '☠ ⚙ ☠ ⚙ ☠';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--wh-bg-card);
+  padding: 0 12px;
+  font-size: 8px;
+  color: var(--wh-gold-dark);
+  letter-spacing: 0.3em;
+  opacity: 0.5;
+}
+
+/* ---- Improved golden table header (禁军金质表头) ---- */
+
+.theme-warhammer thead tr {
+  background: linear-gradient(180deg,
+    rgba(26, 21, 17, 0.98) 0%,
+    rgba(15, 12, 9, 0.98) 100%) !important;
+  border-bottom: 2px solid var(--wh-gold-dark) !important;
+}
+
+.theme-warhammer thead tr::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--wh-gold-dark) 5%,
+    var(--wh-auramite) 20%,
+    var(--wh-auramite-bright) 50%,
+    var(--wh-auramite) 80%,
+    var(--wh-gold-dark) 95%,
+    transparent 100%);
+  opacity: 0.7;
+  box-shadow: 0 0 8px rgba(240, 208, 112, 0.3);
+}
+
+.theme-warhammer th {
+  color: var(--wh-auramite) !important;
+  text-shadow:
+    0 0 10px rgba(240, 208, 112, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ---- Battle damage / worn edges (战损磨损边缘 - 真实感) ---- */
+
+.theme-warhammer .apple-card::after {
+  /* enhance bottom border with worn metallic feel */
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--wh-border) 20%,
+    var(--wh-gold-dark) 50%,
+    var(--wh-border) 80%,
+    transparent 100%);
+}
+
+/* ---- Oathmark / purity seal style (誓言印章/纯印风格 - 用于状态标签) ---- */
+
+.wh-purity-seal {
+  background: linear-gradient(135deg, #c0c0c0 0%, #808080 50%, #a0a0a0 100%);
+  color: #1a1410;
+  border: 1px solid #606060;
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wh-purity-seal::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 4px;
+  background: linear-gradient(180deg, var(--wh-custodes-red) 0%, var(--wh-custodes-red-dark) 100%);
+  border-radius: 0 0 2px 2px;
+}
+
+/* ---- Scroll of Magnus / knowledge text (马格努斯之卷 - 知识文本) ---- */
+
+.wh-scroll-text {
+  font-family: 'Cinzel', 'Noto Serif SC', serif;
+  font-style: italic;
+  color: var(--wh-text-muted);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+
+/* ---- Additional warhammer-specific state colors ---- */
+
+/* Override tag colors with more specific chaos/imperial themes */
+.theme-warhammer .apple-tag-destructive {
+  background: linear-gradient(180deg, rgba(139, 0, 0, 0.35) 0%, rgba(92, 0, 0, 0.2) 100%) !important;
+  color: #ff5050 !important;
+  border-color: var(--wh-khorne-red) !important;
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.3);
+}
+
+.theme-warhammer .apple-tag-warning {
+  background: linear-gradient(180deg, rgba(139, 26, 26, 0.35) 0%, rgba(139, 26, 26, 0.15) 100%) !important;
+  color: var(--wh-blood-bright) !important;
+  border-color: var(--wh-blood) !important;
+}
+
+.theme-warhammer .apple-tag-success {
+  background: linear-gradient(180deg, rgba(74, 124, 58, 0.25) 0%, rgba(60, 100, 45, 0.15) 100%) !important;
+  color: #7cc45a !important;
+  border-color: #2e5a20 !important;
+}
+
+/* ---- The Golden Throne footer accent (金王座页脚装饰) ---- */
+
+.theme-warhammer footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-warhammer footer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 30px;
+  background: radial-gradient(ellipse at bottom center, rgba(240, 208, 112, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ---- Aquila wings pattern (天鹰翼纹 - 背景装饰) ---- */
+
+.theme-warhammer body::before {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23d4a853' stroke-width='0.4' opacity='0.035'%3E%3Cpath d='M40 10 L45 25 L55 20 L48 30 L58 35 L45 38 L40 50 L35 38 L22 35 L32 30 L25 20 L35 25 Z'/%3E%3Cpath d='M40 55 L45 65 L55 62 L48 70 L58 72 L45 73 L40 80 L35 73 L22 72 L32 70 L25 62 L35 65 Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---- Cogwheel mechanicus pattern (齿轮机械神教纹) ---- */
+
+.wh-cog-pattern {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='8' fill='none' stroke='%23d4a853' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='20' cy='20' r='3' fill='none' stroke='%23d4a853' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M20 5 L20 10 M20 30 L20 35 M5 20 L10 20 M30 20 L35 20 M9 9 L12 12 M28 28 L31 31 M9 31 L12 28 M28 12 L31 9' stroke='%23d4a853' stroke-width='0.5' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ---- Skull pattern for header accent (骷髅纹样 - 页眉装饰) ---- */
+
+.wh-skull-pattern {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'%3E%3Cg fill='%23d4a853' opacity='0.05'%3E%3Cellipse cx='15' cy='12' rx='6' ry='7'/%3E%3Crect x='12' y='16' width='6' height='6'/%3E%3Cellipse cx='45' cy='12' rx='6' ry='7'/%3E%3Crect x='42' y='16' width='6' height='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+/* ============================================
    WULIN THEME (武林外传 - 同福客栈)
    ============================================ */
 

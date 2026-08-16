@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { Calculator, Shield, Palette, ChevronDown, Cog, Skull } from 'lucide-react';
+import { Calculator, Shield, Palette, ChevronDown, Cog, Skull, Swords, Crown, Flame, Gem, Sparkles } from 'lucide-react';
 import type { LoanParams } from './types';
 import { calcMortgage } from './lib/mortgage';
 import LoanInputPanel from './components/LoanInputPanel';
@@ -130,20 +130,30 @@ export default function App() {
           </div>
         </div>
 
-        {/* Warhammer theme header decoration - Omnissiah motto */}
+        {/* Warhammer theme header decoration */}
         {theme === 'warhammer' && (
-          <div className="wh-motto wh-motto-omnissiah pb-1.5 pt-0.5">
-            ✦ 赞美万机之神 · 愿欧姆弥赛亚赐福于你的计算 · Praise the Omnissiah ✦
+          <div className="wh-motto pb-1.5 pt-0.5">
+            <span className="wh-liturgy-strong">✦ 帝皇庇护 · 禁军守护 · 万机之神赐福 ✦</span>
+            <br />
+            <span className="text-[9px] opacity-60 mt-1 inline-block">
+              Imperator Protectet · Custodes Custodiant · Omnissiah Benedicat
+            </span>
           </div>
         )}
       </header>
 
       {/* Main Content - Vertical Flow */}
       <main className="max-w-[1400px] mx-auto px-6 py-6 space-y-6 relative z-10">
-        {/* Warhammer decorative divider */}
+        {/* Warhammer decorative - Emperor's Aquila */}
         {theme === 'warhammer' && (
-          <div className="wh-gothic-divider opacity-40 animate-fade-in">
-            <Skull className="w-4 h-4 text-[#d4a853]" />
+          <div className="flex items-center justify-center gap-4 opacity-50">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#8b6914] to-transparent" />
+            <Crown className="w-4 h-4 text-[#f0d070]" style={{ filter: 'drop-shadow(0 0 6px rgba(240,208,112,0.5))' }} />
+            <Swords className="w-4 h-4 text-[#d4a853]" />
+            <Skull className="w-5 h-5 text-[#f0d070]" style={{ filter: 'drop-shadow(0 0 6px rgba(240,208,112,0.5))' }} />
+            <Swords className="w-4 h-4 text-[#d4a853]" style={{ transform: 'scaleX(-1)' }} />
+            <Crown className="w-4 h-4 text-[#f0d070]" style={{ filter: 'drop-shadow(0 0 6px rgba(240,208,112,0.5))' }} />
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#8b6914] to-transparent" />
           </div>
         )}
 
@@ -152,16 +162,45 @@ export default function App() {
           <LoanInputPanel params={params} onChange={setParams} />
         </section>
 
+        {/* Warhammer liturgy divider */}
+        {theme === 'warhammer' && (
+          <div className="wh-liturgy">
+            <Flame className="inline w-3 h-3 mr-2 text-[#c41e3a]" style={{ filter: 'drop-shadow(0 0 4px rgba(196,30,58,0.5))' }} />
+            知识就是力量 · 钢铁就是意志 · 唯有帝皇是人类的救赎
+            <Flame className="inline w-3 h-3 ml-2 text-[#c41e3a]" style={{ filter: 'drop-shadow(0 0 4px rgba(196,30,58,0.5))' }} />
+          </div>
+        )}
+
         {/* Results Summary */}
         <section className="animate-slide-up animate-backwards animation-delay-1">
           <ResultsSummary result={result} />
         </section>
+
+        {/* Warhammer - Cog & skull divider */}
+        {theme === 'warhammer' && (
+          <div className="flex items-center justify-center gap-3 opacity-40">
+            <Cog className="w-3.5 h-3.5 text-[#d4a853]" />
+            <Gem className="w-3 h-3 text-[#f0d070]" />
+            <Skull className="w-4 h-4 text-[#d4a853]" />
+            <Gem className="w-3 h-3 text-[#f0d070]" />
+            <Cog className="w-3.5 h-3.5 text-[#d4a853]" />
+          </div>
+        )}
 
         {/* Charts Row */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-slide-up animate-backwards animation-delay-2">
           <BalanceTrendChart records={result.records} theme={theme} />
           <PrincipalInterestPie result={result} theme={theme} />
         </section>
+
+        {/* Warhammer - chaos gods decorative hint */}
+        {theme === 'warhammer' && (
+          <div className="wh-liturgy opacity-40 text-center">
+            <Sparkles className="inline w-2.5 h-2.5 mr-1.5 text-[#daa520]" />
+            恐惧是心灵杀手 · 变化是唯一永恒 · 腐朽亦是生命 · 完美在于求索
+            <Sparkles className="inline w-2.5 h-2.5 ml-1.5 text-[#daa520]" />
+          </div>
+        )}
 
         {/* Annual / Monthly Summary with Toggle */}
         <section className="animate-slide-up animate-backwards animation-delay-3">
@@ -180,10 +219,17 @@ export default function App() {
           />
         </section>
 
-        {/* Warhammer bottom decoration */}
+        {/* Warhammer bottom decoration - Horus Heresy style */}
         {theme === 'warhammer' && (
-          <div className="wh-gothic-divider opacity-30">
-            <Cog className="w-4 h-4 text-[#d4a853]" />
+          <div className="flex flex-col items-center gap-2 opacity-50">
+            <div className="wh-horus-divider w-full" />
+            <div className="flex items-center gap-3">
+              <Skull className="w-3.5 h-3.5 text-[#8b6914]" />
+              <span className="wh-liturgy text-[8px]">
+                为帝皇而死胜于为自己而生 · It is better to die for the Emperor than to live for yourself
+              </span>
+              <Skull className="w-3.5 h-3.5 text-[#8b6914]" />
+            </div>
           </div>
         )}
       </main>
@@ -195,9 +241,14 @@ export default function App() {
             计算结果仅供参考，实际还款金额以银行为准
           </p>
           {theme === 'warhammer' ? (
-            <p className="wh-motto wh-motto-omnissiah">
-              知识就是力量 · 钢铁就是意志 · Knowledge is Power, Guard it Well
-            </p>
+            <div className="text-center">
+              <p className="wh-motto wh-motto-omnissiah text-[10px]">
+                ☩ 帝皇端坐金王座之上 · 守护人类万年 ☩
+              </p>
+              <p className="text-[9px] text-[#5e4d38] mt-1">
+                The Emperor sits upon the Golden Throne, guarding mankind for ten thousand years
+              </p>
+            </div>
           ) : (
             <p className="text-[12px] text-text-500">
               所有计算在浏览器本地完成 · 数据不上传服务器
