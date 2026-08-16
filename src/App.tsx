@@ -3,15 +3,11 @@ import { Calculator, Shield } from 'lucide-react';
 import type { LoanParams } from './types';
 import { calcMortgage } from './lib/mortgage';
 import LoanInputPanel from './components/LoanInputPanel';
-import EarlyRepaymentEditor from './components/EarlyRepaymentEditor';
-import RateAdjustmentEditor from './components/RateAdjustmentEditor';
 import ResultsSummary from './components/ResultsSummary';
 import AmortizationTable from './components/AmortizationTable';
 import AnnualSummary from './components/AnnualSummary';
-import PaymentBreakdownChart from './components/charts/PaymentBreakdownChart';
 import BalanceTrendChart from './components/charts/BalanceTrendChart';
 import PrincipalInterestPie from './components/charts/PrincipalInterestPie';
-import SavingsComparisonChart from './components/charts/SavingsComparisonChart';
 
 export default function App() {
   const [params, setParams] = useState<LoanParams>({
@@ -28,7 +24,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f7f7fa] text-text-800">
-      {/* Navigation Bar - Apple style */}
+      {/* Navigation Bar */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-background-300">
         <div className="max-w-[1400px] mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -53,43 +49,36 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-[1400px] mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left Sidebar - Inputs */}
-          <aside className="lg:col-span-4 xl:col-span-3 space-y-5">
-            <LoanInputPanel params={params} onChange={setParams} />
-            <RateAdjustmentEditor
-              rateAdjustments={params.rateAdjustments}
-              onChange={(ra) => setParams({ ...params, rateAdjustments: ra })}
-              maxMonth={params.termYears * 12}
-              baseRate={params.annualRate}
-              startDate={params.startDate}
-            />
-            <EarlyRepaymentEditor
-              earlyRepayments={params.earlyRepayments}
-              onChange={(er) => setParams({ ...params, earlyRepayments: er })}
-              maxMonth={params.termYears * 12}
-              startDate={params.startDate}
-            />
-          </aside>
+      {/* Main Content - Vertical Flow */}
+      <main className="max-w-[1400px] mx-auto px-6 py-6 space-y-6">
+        {/* Input Section - Top */}
+        <section className="animate-slide-up animate-backwards">
+          <LoanInputPanel params={params} onChange={setParams} />
+        </section>
 
-          {/* Right Content - Results */}
-          <section className="lg:col-span-8 xl:col-span-9 space-y-6">
-            <ResultsSummary result={result} />
+        {/* Results Summary */}
+        <section className="animate-slide-up animate-backwards animation-delay-1">
+          <ResultsSummary result={result} />
+        </section>
 
-            {/* Charts Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <PaymentBreakdownChart records={result.records} />
-              <BalanceTrendChart records={result.records} />
-              <PrincipalInterestPie result={result} />
-              <SavingsComparisonChart result={result} />
-            </div>
+        {/* Charts Row - Reduced to 2 */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-slide-up animate-backwards animation-delay-2">
+          <BalanceTrendChart records={result.records} />
+          <PrincipalInterestPie result={result} />
+        </section>
 
-            <AnnualSummary records={result.records} startDate={params.startDate} />
-            <AmortizationTable records={result.records} startDate={params.startDate} />
-          </section>
-        </div>
+        {/* Annual / Monthly Summary with Toggle */}
+        <section className="animate-slide-up animate-backwards animation-delay-3">
+          <AnnualSummary records={result.records} startDate={params.startDate} />
+        </section>
+
+        {/* Detail Table */}
+        <section className="animate-slide-up animate-backwards animation-delay-4">
+          <AmortizationTable
+            records={result.records}
+            startDate={params.startDate}
+          />
+        </section>
       </main>
 
       {/* Footer */}
