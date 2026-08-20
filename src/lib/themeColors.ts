@@ -1,23 +1,23 @@
-export type Theme = 'apple' | 'warhammer' | 'wulin' | 'renmin' | 'daming' | 'rickmorty';
+export type Theme = 'apple' | 'warhammer' | 'wulin' | 'renmin' | 'daming' | 'rickmorty' | 'harrypotter';
 
 export const getChartColors = (theme: Theme) => {
   switch (theme) {
     case 'warhammer':
       return {
-        primary: '#d4a853',
-        primaryLight: '#e8c77a',
-        secondary: '#8b1a1a',
-        secondaryLight: '#c42525',
-        success: '#4a7c3a',
-        warning: '#8b1a1a',
-        info: '#3a6b7c',
-        purple: '#6b3a7c',
-        grid: '#3d332a',
-        text: '#8a7d6d',
-        textStrong: '#d9cfc2',
+        primary: '#dc143c',
+        primaryLight: '#ff0033',
+        secondary: '#cd7f32',
+        secondaryLight: '#ffd700',
+        success: '#00ff41',
+        warning: '#b8860b',
+        info: '#8b00ff',
+        purple: '#aa00ff',
+        grid: '#2e1015',
+        text: '#8a6850',
+        textStrong: '#e8dcc4',
         gradient: {
-          primary: ['#d4a853', '#8b6914'],
-          secondary: ['#8b1a1a', '#5c0f0f'],
+          primary: ['#dc143c', '#3d0000'],
+          secondary: ['#cd7f32', '#6b4e00'],
         },
       };
     case 'wulin':
@@ -90,6 +90,24 @@ export const getChartColors = (theme: Theme) => {
         gradient: {
           primary: ['#3aef3a', '#1a9a1a'],
           secondary: ['#ffd700', '#b8960b'],
+        },
+      };
+    case 'harrypotter':
+      return {
+        primary: '#d4af37',
+        primaryLight: '#f0d050',
+        secondary: '#50c878',
+        secondaryLight: '#6ee090',
+        success: '#50c878',
+        warning: '#d4af37',
+        info: '#7b68ee',
+        purple: '#9370db',
+        grid: 'rgba(212, 175, 55, 0.15)',
+        text: '#a89060',
+        textStrong: '#e8d5a0',
+        gradient: {
+          primary: ['#f0d050', '#8b6914'],
+          secondary: ['#6ee090', '#2a8050'],
         },
       };
     default: // apple

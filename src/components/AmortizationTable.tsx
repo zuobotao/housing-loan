@@ -3,7 +3,6 @@ import {
   Search,
   ChevronDown,
   ChevronUp,
-  Plus,
   Trash2,
   Zap,
   Percent,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { PaymentRecord, EarlyRepayment, RateAdjustment, EarlyRepaymentStrategy } from '../types';
 import { formatCurrency, monthToYearMonth } from '../lib/mortgage';
+import type { Theme } from '../App';
 
 interface Props {
   records: PaymentRecord[];
@@ -21,6 +21,7 @@ interface Props {
   rateAdjustments: RateAdjustment[];
   onEarlyRepaymentsChange: (repayments: EarlyRepayment[]) => void;
   onRateAdjustmentsChange: (adjustments: RateAdjustment[]) => void;
+  theme?: Theme;
 }
 
 export default function AmortizationTable({
@@ -30,6 +31,7 @@ export default function AmortizationTable({
   rateAdjustments,
   onEarlyRepaymentsChange,
   onRateAdjustmentsChange,
+  theme = 'apple',
 }: Props) {
   const [searchMonth, setSearchMonth] = useState('');
   const [highlightMonth, setHighlightMonth] = useState<number | null>(null);
@@ -44,6 +46,40 @@ export default function AmortizationTable({
 
   const [editingRA, setEditingRA] = useState<number | null>(null);
   const [editingRARate, setEditingRARate] = useState('');
+
+  const isWh = theme === 'warhammer';
+  const isRm = theme === 'rickmorty';
+  const isHp = theme === 'harrypotter';
+  const t = {
+    title: isWh ? '月度献祭卷轴' : isRm ? '充能记录档案' : isHp ? '咏供典籍卷轴' : '还款明细表',
+    subtitle: isWh
+      ? `月次献祭 · 共计 ${records.length} 轮 · 可录入提前献祭与血贡刻度修订`
+      : isRm
+      ? `按月充能 · 总计 ${records.length} 轮 · 支持录入超前充能、调整耗损系数`
+      : isHp
+      ? `按月咏诵 · 共计 ${records.length} 轮 · 支持录入超前咏供、调整魔力流失阈值`
+      : `月粒度 · ${records.length}期 · 可直接在表格中添加提前还款和利率调整`,
+    jumpPlaceholder: isWh ? '跳转献祭轮次' : isRm ? '跳转至充能轮次' : isHp ? '跳转至咏供轮次' : '跳至期',
+    jumpBtn: isWh ? '定位' : isRm ? '定位' : isHp ? '定位' : '跳转',
+    erLabel: isWh ? '提前献祭' : isRm ? '超前充能' : isHp ? '超前魔力咏供' : '提前还款',
+    raLabel: isWh ? '血贡刻度修订' : isRm ? '耗损系数重设' : isHp ? '流失阈值修订' : '利率调整',
+    hint: isWh ? '点击行末徽记，可在对应献祭纪元增设指令' : isRm ? '点击末尾标识，可在对应星历月份新增实验指令' : isHp ? '点击末尾符文印记，可在对应星运月份新增魔法指令' : '点击行尾 + 按钮可在对应月份添加操作',
+    colPeriod: isWh ? '献祭轮次' : isRm ? '充能轮次' : isHp ? '咏供轮次' : '期次',
+    colDate: isWh ? '纪年月份' : isRm ? '星历与时辰' : isHp ? '星运与时辰' : '年月',
+    colPayment: isWh ? '月度血贡' : isRm ? '月度供能' : isHp ? '月度魔力咏供' : '月供',
+    colPrincipal: isWh ? '誓约本源' : isRm ? '本源锚点负荷' : isHp ? '本源誓约枷锁' : '本金',
+    colInterest: isWh ? '嗜血贡赋' : isRm ? '维度耗损能量' : isHp ? '逸散魔力' : '利息',
+    colRate: isWh ? '血贡刻度' : isRm ? '维度耗损系数' : isHp ? '魔力流失阈值' : '利率',
+    colER: isWh ? '提前献祭' : isRm ? '超前充能' : isHp ? '超前咏供' : '提前还款',
+    colRemaining: isWh ? '残存负重' : isRm ? '剩余锚点负荷' : isHp ? '残存枷锁负荷' : '剩余本金',
+    colAction: isWh ? '契约指令' : isRm ? '实验指令' : isHp ? '魔法指令' : '操作',
+    addER: isWh ? '添加提前献祭' : isRm ? '添加超前充能' : isHp ? '添加超前魔力咏供' : '添加提前还款',
+    addRA: isWh ? '添加血贡刻度修订' : isRm ? '添加耗损系数重设' : isHp ? '添加流失阈值修订' : '添加利率调整',
+    delER: isWh ? '删除提前献祭' : isRm ? '删除超前充能' : isHp ? '删除超前魔力咏供' : '删除提前还款',
+    delRA: isWh ? '删除血贡刻度修订' : isRm ? '删除耗损系数重设' : isHp ? '删除流失阈值修订' : '删除利率调整',
+    located: (m: number, label: string) =>
+      isWh ? `已定位至第 ${m} 次献祭（${label}）` : isRm ? `已定位至第 ${m} 次充能（${label}）` : isHp ? `已定位至第 ${m} 次咏供（${label}）` : `已定位至第 ${m} 期（${label}）`,
+  };
 
   const jumpToMonth = useCallback(() => {
     const raw = searchMonth || inputRef.current?.value || '';
@@ -158,9 +194,9 @@ export default function AmortizationTable({
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-background-300 flex-wrap gap-3">
         <div>
-          <h3 className="text-[15px] font-bold text-text-800">还款明细表</h3>
+          <h3 className="text-[15px] font-bold text-text-800">{t.title}</h3>
           <p className="text-[12px] text-text-400 mt-0.5">
-            月粒度 · {records.length}期 · 可直接在表格中添加提前还款和利率调整
+            {t.subtitle}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -173,7 +209,7 @@ export default function AmortizationTable({
                 value={searchMonth}
                 onChange={(e) => setSearchMonth(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="跳至期"
+                placeholder={t.jumpPlaceholder}
                 min="1"
                 max={records.length}
                 className="w-20 pl-7 pr-2 py-1.5 text-[12px] rounded-lg bg-background-200 border border-background-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none tabular-nums text-text-800 font-mono font-medium transition"
@@ -183,7 +219,7 @@ export default function AmortizationTable({
               onClick={jumpToMonth}
               className="px-3 py-1.5 text-[12px] font-semibold text-white bg-brand-500 rounded-lg hover:bg-brand-600 transition"
             >
-              跳转
+              {t.jumpBtn}
             </button>
           </div>
           <button
@@ -199,14 +235,14 @@ export default function AmortizationTable({
       <div className="px-5 py-2.5 bg-background-100/50 border-b border-background-300 flex items-center gap-4 flex-wrap">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#34C759]" />
-          <span className="text-[11px] text-text-500">提前还款</span>
+          <span className="text-[11px] text-text-500">{t.erLabel}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-brand-500" />
-          <span className="text-[11px] text-text-500">利率调整</span>
+          <span className="text-[11px] text-text-500">{t.raLabel}</span>
         </div>
         <span className="text-[11px] text-text-400">
-          点击行尾 <Plus className="w-3 h-3 inline" /> 按钮可在对应月份添加操作
+          {t.hint}
         </span>
       </div>
 
@@ -215,16 +251,16 @@ export default function AmortizationTable({
         <table className="w-full text-sm table-row-hover">
           <thead className="sticky top-0 z-10">
             <tr className="bg-background-100/95 backdrop-blur-sm text-text-500 text-[11px] border-b border-background-300">
-              <th className="px-3 py-2.5 text-left font-semibold whitespace-nowrap">期次</th>
-              <th className="px-3 py-2.5 text-left font-semibold whitespace-nowrap">年月</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">月供</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">本金</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">利息</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">利率</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">提前还款</th>
-              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">剩余本金</th>
+              <th className="px-3 py-2.5 text-left font-semibold whitespace-nowrap">{t.colPeriod}</th>
+              <th className="px-3 py-2.5 text-left font-semibold whitespace-nowrap">{t.colDate}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colPayment}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colPrincipal}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colInterest}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colRate}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colER}</th>
+              <th className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{t.colRemaining}</th>
               <th className="px-3 py-2.5 text-center font-semibold whitespace-nowrap sticky right-0 bg-background-100/95 backdrop-blur-sm">
-                操作
+                {t.colAction}
               </th>
             </tr>
           </thead>
@@ -356,14 +392,14 @@ export default function AmortizationTable({
                     <div className="flex items-center justify-center gap-0.5">
                       <button
                         onClick={() => startAddER(r.month)}
-                        title="添加提前还款"
+                        title={t.addER}
                         className="p-1 rounded hover:bg-[#34C759]/10 text-text-300 hover:text-[#34C759] transition"
                       >
                         <Zap className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => startAddRA(r.month, r.annualRate)}
-                        title="添加利率调整"
+                        title={t.addRA}
                         className="p-1 rounded hover:bg-brand-500/10 text-text-300 hover:text-brand-500 transition"
                       >
                         <Percent className="w-3.5 h-3.5" />
@@ -373,7 +409,7 @@ export default function AmortizationTable({
                           {er && (
                             <button
                               onClick={() => deleteER(r.month)}
-                              title="删除提前还款"
+                              title={t.delER}
                               className="p-1 rounded hover:bg-[#FF3B30]/10 text-text-300 hover:text-[#FF3B30] transition"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -382,7 +418,7 @@ export default function AmortizationTable({
                           {ra && r.month > 1 && (
                             <button
                               onClick={() => deleteRA(r.month)}
-                              title="删除利率调整"
+                              title={t.delRA}
                               className="p-1 rounded hover:bg-[#FF3B30]/10 text-text-300 hover:text-[#FF3B30] transition"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -402,7 +438,7 @@ export default function AmortizationTable({
       {/* Footer */}
       {highlightMonth && (
         <div className="px-5 py-2.5 border-t border-background-300 text-[12px] text-text-500 bg-background-100/50">
-          已定位至第 {highlightMonth} 期（{monthToYearMonth(highlightMonth, startDate)}）
+          {t.located(highlightMonth, monthToYearMonth(highlightMonth, startDate))}
         </div>
       )}
     </div>
